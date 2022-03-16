@@ -73,12 +73,12 @@ def edit_post(id):
 
         post = Post.query.get(id)
 
-        if form.data['image']:
-            post.image = form.data['image']
-            post.tweet = form.data['tweet']
 
-        else:
-            post.tweet = form.data['tweet']
+        post.image = form.data['image']
+        post.tweet = form.data['tweet']
+
+
+
 
         db.session.commit()
         return post.to_dict()
