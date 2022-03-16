@@ -1,5 +1,7 @@
 const FEED_POSTS = 'post/FEED_POSTS';
 const CREATE_POSTS = 'post/CREATE_POSTS';
+const EDIT_POST = 'post/EDIT_POST';
+const DELETE_POST = 'post/DELETE_POST';
 
 
 const feedPosts = (feed) => ({
@@ -12,6 +14,15 @@ const createPost = (post) => ({
     post
 })
 
+const editPost = (post) => ({
+    type: EDIT_POST,
+    post
+})
+
+const erasePost = (post) => ({
+    type: DELETE_POST,
+    post
+})
 
 export const getFeedPosts = () => async(dispatch) => {
     const response = await fetch('/posts')
@@ -37,10 +48,44 @@ export const createJot = (newPost) => async(dispatch) => {
     } else if(response.status < 500){
         const data = await response.json();
         if (data.errors) {
+            console.log(data.errors)
           return data.errors;
         }
     } else{
         return ['Something went wrong. Please try again.']
+    }
+}
+
+export const updatePost = (postId, newPost) => async(dispatch) => {
+    const response = await fetch(`/posts/${postId}/update`, {
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newPost)
+    })
+    if (response.ok){
+        const post = await response.json();
+        dispatch(editPost(post))
+        return null;
+    } else if(response.status < 500){
+        const data = await response.json();
+        if (data.errors) {
+            console.log(data.errors)
+          return data.errors;
+        }
+    } else{
+        return ['Something went wrong. Please try again.']
+    }
+}
+
+export const deletePost = (postId) => async(dispatch) => {
+    const response = await fetch(`/posts/${postId}`, {
+        method:'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    })
+    if(response.ok){
+        const data = await response.json();
+        dispatch(erasePost(data))
+        // return 'Success'
     }
 }
 
@@ -55,6 +100,14 @@ export default function postReducer(state= initialState, action){
         case CREATE_POSTS:
             newState = {...state};
             newState[action.post.id] = {...action.post};
+            return newState;
+        case EDIT_POST:
+            newState = {...state};
+            newState[action.post.id] = {...action.post};
+            return newState;
+        case DELETE_POST:
+            newState = {...state};
+            delete newState[action.post.id];
             return newState;
         default:
             return state;

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFeedPosts, createJot } from "../store/post";
 import NavBar from "./NavBar";
+import EditModalSetUp from "./EditDeleteModal/EditModalSetUp";
+import DeleteModalSetUp from "./EditDeleteModal/DeleteModalSetup";
 
 function HomeFeed(){
     const [tweet, setTweet] = useState('');
@@ -19,7 +21,7 @@ function HomeFeed(){
         dispatch(getFeedPosts())
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         const newPost = {
@@ -30,7 +32,15 @@ function HomeFeed(){
             profile_pic: currentUser.profile_pic
         }
 
-        dispatch(createJot(newPost))
+        const result = await dispatch(createJot(newPost))
+
+        if (result){
+            setErrors(result)
+        }else{
+            setTweet('')
+            setImage('')
+            setErrors([])
+        }
 
     }
 
@@ -74,6 +84,9 @@ function HomeFeed(){
                         {post.username}
                         {post.tweet}
                         <img src={post.image}/>
+                        {/* Edit Modal here */}
+                        <EditModalSetUp post={post}/>
+                        <DeleteModalSetUp post={post}/>
                     </div>
                 ))}
             </div>

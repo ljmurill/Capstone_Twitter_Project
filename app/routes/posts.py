@@ -1,3 +1,4 @@
+from asyncio import constants
 from datetime import datetime
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user
@@ -5,6 +6,17 @@ from app.forms.post_form import PostForm
 from app.models import Post, db
 
 post_routes = Blueprint('posts', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{error}')
+    return errorMessages
+
 
 @post_routes.route('')
 def get_posts():
@@ -41,23 +53,33 @@ def post():
         db.session.add(post)
         db.session.commit()
         return post.to_dict()
-    print(form.errors, '============================')
-    return form.errors
 
-@post_routes.route('', methods=['DELETE'])
-def delete_post(post_id):
-    specific_post = Post.query.get(post_id)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@post_routes.route('/<int:id>', methods=['DELETE'])
+def delete_post(id):
+    specific_post = Post.query.get(id)
 
     db.session.delete(specific_post)
     db.session.commit()
     return specific_post.to_dict()
 
-@post_routes.route('/update', methods=['POST'])
-def edit_post(post_id):
-    post = Post.query.get(post_id)
+@post_routes.route('/<int:id>/update', methods=['POST'])
+def edit_post(id):
+    form = PostForm()
 
-    post.image = request.form['image']
-    post.tweet = request.form['tweet']
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
 
-    db.session.commit()
-    return post.to_dict()
+        post = Post.query.get(id)
+
+        if form.data['image']:
+            post.image = form.data['image']
+            post.tweet = form.data['tweet']
+
+        else:
+            post.tweet = form.data['tweet']
+
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
