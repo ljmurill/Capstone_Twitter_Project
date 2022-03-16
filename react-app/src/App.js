@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Splash from './components/Splash';
+import HomeFeed from './components/Home';
 
 
 function App() {
@@ -43,12 +44,10 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <NavBar />
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/homefeed' exact={true} >
-          <NavBar />
-          <h1>My Home Page</h1>
+          <HomeFeed/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
