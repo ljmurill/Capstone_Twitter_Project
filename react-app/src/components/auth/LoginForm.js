@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { Link } from 'react-router-dom';
+import './auth.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -37,7 +38,9 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className='loginFormDiv'>
+      <style>{'body background-color: rgba(91, 112, 131, 0.4)'}</style>
+      <h2>Sign in to Jotter</h2>
       <form onSubmit={onLogin}>
         <div>
           {errors.map((error, ind) => (
