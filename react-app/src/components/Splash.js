@@ -18,11 +18,11 @@ function Splash(){
                 <h1 className='splashTitle'>Happening Now</h1>
                 <h3 className='splashSubTitle'>Join Jotter today.</h3>
 
-                <Link to='/sign-up'><button className='splashSignUpButton'>Sign Up</button></Link>
+                <Link to='/sign-up' onClick={() => document.querySelector('body').classList.add('login')}><button className='splashSignUpButton'>Sign Up</button></Link>
 
                 <div>
                     <p>Already Have am account?</p>
-                    <Link to='/login'><button className='splashSignInButton'>Sign In</button></Link>
+                    <Link to='/login' onClick={() => document.querySelector('body').classList.add('login')}><button className='splashSignInButton'>Sign In</button></Link>
                 </div>
             </div>
             </div>

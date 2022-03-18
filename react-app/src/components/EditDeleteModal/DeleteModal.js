@@ -1,18 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../../store/post";
+import { Link, useHistory } from "react-router-dom";
+
 
 function DeleteModal({post, setShowModal}){
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleDelete = () => {
-        dispatch(deletePost(post.id))
 
+        if (post.hasOwnProperty('comment')){
 
-        setShowModal(false)
-
-
-
+        }else{
+            dispatch(deletePost(post.id))
+            setShowModal(false)
+            history.push('/homefeed')
+        }
     }
 
     return(

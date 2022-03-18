@@ -2,35 +2,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/homefeed' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        {/* <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li> */}
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
+    <nav className='navBarMainDiv'>
+          <div>
+            <NavLink to='/homefeed' exact={true} activeClassName='active'>
+              <div className='white'><FontAwesomeIcon icon="fa-solid fa-house" />Home</div>
+            </NavLink>
+
+            <NavLink to='/users' exact={true} activeClassName='active'>
+            <div className='white'><FontAwesomeIcon icon="fa-regular fa-user" />Users</div>
+            </NavLink>
+          </div>
+
+          <div>
+            <LogoutButton />
+          </div>
+
     </nav>
   );
 }

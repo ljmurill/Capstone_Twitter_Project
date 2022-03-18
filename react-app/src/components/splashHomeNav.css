@@ -1,3 +1,5 @@
+/* ****************** Splash Page ****************** */
+
 .splashPage{
     display: flex;
 }
@@ -42,4 +44,51 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 25px;
+}
+
+
+/* ****************** Home Feed ****************** */
+
+.homeFeedLayout{
+    display: flex;
+    justify-content: center;
+}
+
+.border{
+    border: 1px solid gray;
+}
+.borderTopPost{
+    border-top: 1px solid gray;
+}
+.homeFeedHiddenScroll{
+    overflow-y: scroll;
+    max-height: 750px;
+}
+
+.homeFeedHiddenScroll::-webkit-scrollbar{
+    display: none;
+}
+
+.profilePic{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+/* ****************** NavBar ****************** */
+
+
+.navBarMainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-right: 25px;
+    height: inherit;
+}
+
+.white{
+    color: white;
+    display: flex;
+    gap: 15px;
 }

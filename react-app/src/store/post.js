@@ -1,3 +1,6 @@
+// *********************** POST ***************************
+
+
 const FEED_POSTS = 'post/FEED_POSTS';
 const CREATE_POSTS = 'post/CREATE_POSTS';
 const EDIT_POST = 'post/EDIT_POST';
@@ -8,6 +11,7 @@ const feedPosts = (feed) => ({
     type: FEED_POSTS,
     posts: feed
 })
+
 
 const createPost = (post) => ({
     type: CREATE_POSTS,
@@ -89,6 +93,26 @@ export const deletePost = (postId) => async(dispatch) => {
     }
 }
 
+// *********************** COMMENTS ***************************
+
+const SPECIFIC_POST_COMMENTS = 'comment/SPECIFIC_POST_COMMENTS';
+
+const allComments = (comments, postId) => ({
+    type: SPECIFIC_POST_COMMENTS,
+    comments,
+    postId
+})
+
+export const getComments = (postId) => async(dispatch) => {
+    const response = await fetch(`/comments/${postId}`)
+
+    if (response.ok) {
+        const comments = await response.json()
+        dispatch(allComments(comments, postId))
+    }
+    return response;
+}
+
 const initialState = {}
 export default function postReducer(state= initialState, action){
     let newState;
@@ -109,6 +133,10 @@ export default function postReducer(state= initialState, action){
             newState = {...state};
             delete newState[action.post.id];
             return newState;
+        case SPECIFIC_POST_COMMENTS:
+            // newState = {...state};
+            newState[action.postId].comments = [...action.comments.comments];
+            return newState
         default:
             return state;
     }

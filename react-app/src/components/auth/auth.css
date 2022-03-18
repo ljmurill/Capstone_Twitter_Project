@@ -1,9 +1,18 @@
 .loginFormDiv{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -100px;
+    top: 24%;
+    left: 34%;
+    background-color: black;
+    width: 35vw;
+    height: 55vh;
 }
 
+body.login{
+    background-color: rgb(44, 47, 51);
+}
 
+.actualLoginForm{
+    display: flex;
+    flex-direction: column;
+ 
+}

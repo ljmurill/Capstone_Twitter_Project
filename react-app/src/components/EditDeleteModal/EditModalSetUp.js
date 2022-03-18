@@ -4,7 +4,7 @@ import EditModal from "./EditModal";
 
 
 
-function EditModalSetUp({ post  }) {
+function EditModalSetUp({ post }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>

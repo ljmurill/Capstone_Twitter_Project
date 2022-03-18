@@ -10,6 +10,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Splash from './components/Splash';
 import HomeFeed from './components/Home';
+import SpecificPost from './components/SpecificPost';
+import { getFeedPosts } from './store/post';
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getFeedPosts());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -44,7 +47,12 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
+          <NavBar />
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/posts/:postId' exact={true} >
+          <NavBar />
+          <SpecificPost />
         </ProtectedRoute>
         <ProtectedRoute path='/homefeed' exact={true} >
           <HomeFeed/>
