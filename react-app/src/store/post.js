@@ -1,6 +1,5 @@
 // *********************** POST ***************************
 
-
 const FEED_POSTS = 'post/FEED_POSTS';
 const CREATE_POSTS = 'post/CREATE_POSTS';
 const EDIT_POST = 'post/EDIT_POST';
@@ -96,11 +95,30 @@ export const deletePost = (postId) => async(dispatch) => {
 // *********************** COMMENTS ***************************
 
 const SPECIFIC_POST_COMMENTS = 'comment/SPECIFIC_POST_COMMENTS';
+const CREATE_COMMENT = 'comment/CREATE_COMMENT';
+const DELETE_COMMENT = 'comment/DELETE_COMMENT';
+const EDIT_COMMENT = 'comment/EDIT_COMMENT';
+
 
 const allComments = (comments, postId) => ({
     type: SPECIFIC_POST_COMMENTS,
     comments,
     postId
+})
+
+const makeComment = (comment) => ({
+    type:CREATE_COMMENT,
+    comment
+})
+
+const removeComment = (comment) => ({
+    type:DELETE_COMMENT,
+    comment
+})
+
+const editComment = (comment) => ({
+    type:EDIT_COMMENT,
+    comment
 })
 
 export const getComments = (postId) => async(dispatch) => {
@@ -111,6 +129,62 @@ export const getComments = (postId) => async(dispatch) => {
         dispatch(allComments(comments, postId))
     }
     return response;
+}
+
+export const createComment = (newComment) =>  async(dispatch) => {
+    const response = await fetch(`/comments`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newComment)
+    })
+
+    if (response.ok){
+        const comment = await response.json()
+        dispatch(makeComment(comment))
+        return null
+    } else if(response.status < 500){
+        const data = await response.json();
+        if (data.errors) {
+            console.log(data.errors)
+          return data.errors;
+        }
+    } else{
+        return ['Something went wrong. Please try again.']
+    }
+}
+
+export const deleteComment = (commentId) =>  async(dispatch) => {
+    const response = await fetch(`/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    })
+
+    if (response.ok){
+        const comment = await response.json()
+        dispatch(removeComment(comment))
+    }
+}
+
+export const updateComment = (commentId, newComment) => async(dispatch) => {
+    const response = await fetch(`/comments/${commentId}/updates`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newComment)
+    })
+
+    if(response.ok){
+        const data = await response.json();
+        dispatch(editComment(data));
+        return null;
+    } else if(response.status < 500){
+        const data = await response.json();
+        if (data.errors) {
+            console.log(data.errors)
+          return data.errors;
+        }
+    } else{
+        return ['Something went wrong. Please try again.']
+    }
 }
 
 const initialState = {}
@@ -133,10 +207,31 @@ export default function postReducer(state= initialState, action){
             newState = {...state};
             delete newState[action.post.id];
             return newState;
+
+        // ***************COMMENTS********************
+
         case SPECIFIC_POST_COMMENTS:
-            // newState = {...state};
+            newState = {...state};
             newState[action.postId].comments = [...action.comments.comments];
             return newState
+        case CREATE_COMMENT:
+            newState = {...state};
+            newState[action.comment.post_id].comments = [{...action.comment}, ...newState[action.comment.post_id].comments];
+            return newState;
+        case DELETE_COMMENT:
+            newState ={...state};
+            newState[action.comment.post_id].comments.forEach((comment, i) =>{
+                if (comment === action.comment) newState[action.comment.post_id].comments.splice(i, 1)
+            });
+            newState[action.comment.post_id].comments = [...newState[action.comment.post_id].comments];
+            return newState;
+        case EDIT_COMMENT:
+            newState ={...state};
+            newState[action.comment.post_id].comments.forEach((comment, i) =>{
+                if (comment.id === action.comment.id) newState[action.comment.post_id].comments.splice(i, 1, {...action.comment})
+            });
+            newState[action.comment.post_id].comments = [...newState[action.comment.post_id].comments];
+            return newState;
         default:
             return state;
     }

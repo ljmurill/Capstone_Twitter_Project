@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFeedPosts, createJot, getComments } from "../store/post";
-import { Link, useHistory } from "react-router-dom";
-import NavBar from "./NavBar";
-import EditModalSetUp from "./EditDeleteModal/EditModalSetUp";
-import DeleteModalSetUp from "./EditDeleteModal/DeleteModalSetup";
+import { createJot } from "../../store/post";
+import { useHistory } from "react-router-dom";
+import NavBar from "../NavBar";
+import EditModalSetUp from "../EditDeleteModal/EditModalSetUp";
+import DeleteModalSetUp from "../EditDeleteModal/DeleteModalSetup";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { getAllComments } from "../../store/comment";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -16,21 +17,14 @@ function HomeFeed(){
 
     const posts = useSelector(state => state.post);
     const currentUser = useSelector(state => state.session.user);
-
-    useEffect(() => {
-
-        async function test(){
-            if(posts){
-                Object.values(posts).forEach(post => {
-                   await dispatch(getComments(post.id))
-                })
-            }
-        };
-        test()
-    }, [])
+    const allComments = useSelector(state => state.comment);
 
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllComments())
+    },[])
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -101,7 +95,7 @@ function HomeFeed(){
                 </div>
                 <div className="homeFeedHiddenScroll">
                     {posts && Object.values(posts).map((post, i) => (
-                        // <Link key={i} to={`/posts/${post.id}`}>
+
                         <div key={i}>
                             <div className='borderTopPost' onClick={(e) => handleClick(e, post.id)}>
                                 <img className='profilePic' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
@@ -112,12 +106,12 @@ function HomeFeed(){
                             </div>
                             <div>
                                 <FontAwesomeIcon icon="fa-regular fa-comment" />
-                                {}
+                                {allComments.filter(comment => comment.post_id === post.id).length}
                                 <EditModalSetUp post={post}/>
                                 <DeleteModalSetUp post={post}/>
                             </div>
                         </div>
-                        // </Link>
+
                     ))}
                 </div>
 

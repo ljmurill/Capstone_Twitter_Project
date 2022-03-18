@@ -9,10 +9,10 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Splash from './components/Splash';
-import HomeFeed from './components/Home';
+import HomeFeed from './components/Home/Home';
 import SpecificPost from './components/SpecificPost';
 import { getFeedPosts } from './store/post';
-
+import {getAllComments} from './store/comment';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,6 +22,8 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getFeedPosts());
+      await dispatch(getAllComments());
+
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import EditModalSetUp from "./EditDeleteModal/EditModalSetUp";
 import DeleteModalSetUp from "./EditDeleteModal/DeleteModalSetup";
-import { getComments } from "../store/post";
+import { getComments, createComment } from "../store/post";
+
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -25,29 +26,29 @@ function SpecificPost(){
         dispatch(getComments(postId))
     }, [dispatch, postId])
 
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
+    const handleSubmit = async(e) => {
+        e.preventDefault();
 
-    //     const newComment = {
-    //         comment,
-    //         image,
-    //         user_id: currentUser.id,
-    //         post_id: postId,
-    //         username: currentUser.username,
-    //         profile_pic: currentUser.profile_pic
-    //     }
+        const newComment = {
+            comment,
+            image,
+            user_id: currentUser.id,
+            post_id: postId,
+            username: currentUser.username,
+            profile_pic: currentUser.profile_pic
+        }
 
-    //     const result = await dispatch(createComment(newComment))
+        const result = await dispatch(createComment(newComment))
 
-    //     if (result){
-    //         setErrors(result)
-    //     }else{
-    //         setComment('')
-    //         setImage('')
-    //         setErrors([])
-    //     }
+        if (result){
+            setErrors(result)
+        }else{
+            setComment('')
+            setImage('')
+            setErrors([])
+        }
 
-    // }
+    }
 
     return(
         <>
@@ -60,7 +61,7 @@ function SpecificPost(){
             <DeleteModalSetUp post={post}/>
             <div>
                 <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic}/>
-                <form >
+                <form onSubmit={handleSubmit}>
                     <div className='postErrors'>
                         {errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
