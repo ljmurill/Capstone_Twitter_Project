@@ -36,6 +36,7 @@ function EditModal({post, setShowModal}){
                     setErrors(result);
                 }else{
                     setShowModal(false);
+                    
                 }
         }
     }

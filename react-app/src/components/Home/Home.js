@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createJot } from "../../store/post";
+import { createJot, getFeedPosts } from "../../store/post";
 import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar";
 import EditModalSetUp from "../EditDeleteModal/EditModalSetUp";
 import DeleteModalSetUp from "../EditDeleteModal/DeleteModalSetup";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
 import { getAllComments } from "../../store/comment";
+import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -17,13 +18,14 @@ function HomeFeed(){
 
     const posts = useSelector(state => state.post);
     const currentUser = useSelector(state => state.session.user);
-    const allComments = useSelector(state => state.comment);
-
+    const allComments = useSelector(state => state.comment.allComments);
+    console.log(posts, '--------------------')
     const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllComments())
+        dispatch(getFeedPosts())
     },[])
 
     const handleSubmit = async(e) => {
@@ -95,23 +97,24 @@ function HomeFeed(){
                 </div>
                 <div className="homeFeedHiddenScroll">
                     {posts && Object.values(posts).map((post, i) => (
-
                         <div key={i}>
-                            <div className='borderTopPost' onClick={(e) => handleClick(e, post.id)}>
-                                <img className='profilePic' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
-                                {post.username}
-                                {post.tweet}
-                                <img src={post.image}/>
+                        {(post !== Object.values(posts)[[Object.values(posts).length -1]]) &&
+                            <>
+                                <div className='borderTopPost' onClick={(e) => handleClick(e, post.id)}>
+                                    <img className='profilePic' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
+                                    {post.username}
+                                    {post.tweet}
+                                    <img src={post.image}/>
 
-                            </div>
-                            <div>
-                                <FontAwesomeIcon icon="fa-regular fa-comment" />
-                                {allComments.filter(comment => comment.post_id === post.id).length}
-                                <EditModalSetUp post={post}/>
-                                <DeleteModalSetUp post={post}/>
-                            </div>
+                                </div>
+                                <div>
+                                    <CreateCommentSetUp post={post}/>
+                                    {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
+                                    <EditModalSetUp post={post}/>
+                                    <DeleteModalSetUp post={post}/>
+                                </div>
+                            </>}
                         </div>
-
                     ))}
                 </div>
 

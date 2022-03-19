@@ -1,15 +1,19 @@
+from calendar import month
 from datetime import datetime
 from app.models import db, User
 
 
 # Adds a demo user, you can add other users here if you want
+date = datetime.now()
+month_year = date.strftime('%B %Y')
+
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', created_at=datetime.now())
+        username='Demo', email='demo@aa.io', password='password', created_at=month_year)
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', created_at=datetime.now())
+        username='marnie', email='marnie@aa.io', password='password', created_at=month_year)
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', created_at=datetime.now())
+        username='bobbie', email='bobbie@aa.io', password='password', created_at=month_year)
 
     db.session.add(demo)
     db.session.add(marnie)

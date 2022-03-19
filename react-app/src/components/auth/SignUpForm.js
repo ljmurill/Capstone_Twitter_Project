@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { Link } from 'react-router-dom';
+import { getAllComments } from '../../store/comment';
+import { getFeedPosts } from '../../store/post';
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -21,6 +24,8 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password, profile_pic, background_image));
       if (data) {
         setErrors(data)
+      }else{
+        document.querySelector('body').classList.remove('login')
       }
     }
   };

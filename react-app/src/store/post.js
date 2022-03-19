@@ -4,8 +4,12 @@ const FEED_POSTS = 'post/FEED_POSTS';
 const CREATE_POSTS = 'post/CREATE_POSTS';
 const EDIT_POST = 'post/EDIT_POST';
 const DELETE_POST = 'post/DELETE_POST';
+const PROFILE_POSTS = 'post/PROFILE_POST';
 
-
+const profilePosts = (allPosts) => ({
+    type:PROFILE_POSTS,
+    allPosts
+})
 const feedPosts = (feed) => ({
     type: FEED_POSTS,
     posts: feed
@@ -26,6 +30,16 @@ const erasePost = (post) => ({
     type: DELETE_POST,
     post
 })
+
+export const profilePostsComments = (userId) => async(dispatch) => {
+    const response = await fetch(`/api/users/${userId}/posts`);
+
+    if(response.ok){
+        const total = await response.json();
+        dispatch(profilePosts(total))
+    }
+    return response;
+}
 
 export const getFeedPosts = () => async(dispatch) => {
     const response = await fetch('/posts')
@@ -197,16 +211,30 @@ export default function postReducer(state= initialState, action){
             return newState;
         case CREATE_POSTS:
             newState = {...state};
-            newState[action.post.id] = {...action.post};
+                newState[action.post.id] = {...action.post}
+
             return newState;
         case EDIT_POST:
             newState = {...state};
-            newState[action.post.id] = {...action.post};
+
+                newState[action.post.id] = {...action.post}
+
             return newState;
         case DELETE_POST:
             newState = {...state};
             delete newState[action.post.id];
             return newState;
+        case PROFILE_POSTS:
+
+            newState = {...state};
+
+            action.allPosts.total.forEach(post => {
+                newState[post.id] = post
+            })
+
+
+            return newState;
+
 
         // ***************COMMENTS********************
 

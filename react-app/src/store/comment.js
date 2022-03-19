@@ -77,7 +77,7 @@ export const getAllComments = () => async(dispatch) => {
     }
 }
 
-const initialState = {};
+const initialState = {allComments:[]};
 
 export default function commentReducer(state = initialState, action){
     let newState;
@@ -91,8 +91,8 @@ export default function commentReducer(state = initialState, action){
         //     newState[action.comment.id] = {...action.comment};
         //     return newState;
         case GET_ALL_COMMENTS:
-            console.log(action.comments)
-            newState=[...action.comments.comments];
+            newState = {...state}
+            newState.allComments=[...action.comments.comments];
             return newState;
         default:
             return state;

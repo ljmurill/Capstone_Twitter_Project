@@ -60,6 +60,8 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+    date = datetime.now()
+    month_year = date.strftime('%B %Y')
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -69,7 +71,7 @@ def sign_up():
             password=form.data['password'],
             profile_pic=form.data['profile_pic'],
             background_image=form.data['background_image'],
-            created_at=datetime.now()
+            created_at=month_year
         )
         db.session.add(user)
         db.session.commit()

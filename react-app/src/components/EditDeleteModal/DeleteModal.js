@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { deleteComment, deletePost, getComments } from "../../store/post";
 import { useHistory } from "react-router-dom";
 import './deleteEdit.css'
@@ -7,6 +8,7 @@ import './deleteEdit.css'
 function DeleteModal({post, setShowModal}){
     const dispatch = useDispatch();
     const history = useHistory();
+    const { userId }  = useParams();
 
     const handleDelete = async() => {
 
@@ -14,8 +16,12 @@ function DeleteModal({post, setShowModal}){
             await dispatch(deleteComment(post.id))
             dispatch(getComments(post.post_id))
             setShowModal(false)
+        }else if (userId){
+            dispatch(deletePost(post.id))
+            setShowModal(false)
+
         }else{
-            await dispatch(deletePost(post.id))
+            dispatch(deletePost(post.id))
             setShowModal(false)
             history.push('/homefeed')
         }

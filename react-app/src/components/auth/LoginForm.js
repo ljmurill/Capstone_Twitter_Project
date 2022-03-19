@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { Link } from 'react-router-dom';
 import './auth.css'
+import { getAllComments } from '../../store/comment';
+import { getFeedPosts } from '../../store/post';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -26,6 +28,7 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }else{
+    
       document.querySelector('body').classList.remove('login')
     }
   };

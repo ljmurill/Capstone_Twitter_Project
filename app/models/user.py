@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.Text)
     background_image = db.Column(db.Text)
-    created_at = db.Column(db.DateTime)
+    created_at = db.Column(db.String)
 
     posts = db.relationship("Post", back_populates="user", cascade="all,delete")
     comments = db.relationship("Comment", back_populates="user", cascade="all,delete")
