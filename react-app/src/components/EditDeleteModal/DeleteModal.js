@@ -5,7 +5,7 @@ import { deleteComment, deletePost, getComments } from "../../store/post";
 import { useHistory } from "react-router-dom";
 import './deleteEdit.css'
 
-function DeleteModal({post, setShowModal}){
+function DeleteModal({post, setShowModal, setShowModalEllipsis}){
     const dispatch = useDispatch();
     const history = useHistory();
     const { userId }  = useParams();
@@ -16,13 +16,16 @@ function DeleteModal({post, setShowModal}){
             await dispatch(deleteComment(post.id))
             dispatch(getComments(post.post_id))
             setShowModal(false)
+            setShowModalEllipsis(false);
         }else if (userId){
             dispatch(deletePost(post.id))
             setShowModal(false)
+            setShowModalEllipsis(false);
 
         }else{
             dispatch(deletePost(post.id))
             setShowModal(false)
+            setShowModalEllipsis(false);
             history.push('/homefeed')
         }
     }
@@ -34,13 +37,17 @@ function DeleteModal({post, setShowModal}){
                 <h1>Delete Reply?</h1>
                 <p>This can't be undone and it will be removed from your profile, and the timeline of any accounts that follow you.</p>
                 <button onClick={handleDelete}>Delete</button>
-                <button onClick={() => setShowModal(false)}>Cancel</button>
+                <button onClick={() => {
+                    setShowModalEllipsis(false);
+                    setShowModal(false)}}>Cancel</button>
             </div>:
             <div className="deleteModal">
                 <h1>Delete Jot?</h1>
                 <p>This can't be undone and it will be removed from your profile, and the timeline of any accounts that follow you.</p>
                 <button onClick={handleDelete}>Delete</button>
-                <button onClick={() => setShowModal(false)}>Cancel</button>
+                <button onClick={() => {
+                    setShowModalEllipsis(false);
+                    setShowModal(false)}}>Cancel</button>
             </div>}
         </>
     )

@@ -54,7 +54,7 @@ function User() {
             <h1 className='userNameProfilePage'>{user.username}</h1>
           <div>{Object.values(total).length > 0 ? Object.values(total).length: ''} Jots</div>
           </div>
-         
+
             <div className='parent'>
               <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground}/>
               <img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic}/>
@@ -85,11 +85,11 @@ function User() {
                               <p className="pElementHome">{post.tweet}</p>
                               {post.image ? <img className='tweetImageOnHome' src={post.image}/>: ''}
                           </div>
+                            <div>
+                                <CreateCommentSetUp post={post}/>
+                                {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
+                            </div>
                       </div>
-                  </div>
-                  <div>
-                      <CreateCommentSetUp post={post}/>
-                      {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
                   </div>
               </>
           </div>

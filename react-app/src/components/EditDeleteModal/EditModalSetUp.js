@@ -4,15 +4,22 @@ import EditModal from "./EditModal";
 
 
 
-function EditModalSetUp({ post }) {
+function EditModalSetUp({ post, setShowModalEllipsis}) {
   const [showModal, setShowModal] = useState(false);
-  console.log('asfdsdfadsfadsfadsfdsaf')
+
+  const handleClick = () => {
+    setShowModal(true)
+
+  }
+
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit</button>
+      <button onClick={handleClick}>Edit</button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <EditModal setShowModal={setShowModal} post={post}/>
+        <Modal onClose={() => {
+          setShowModalEllipsis(false);
+          setShowModal(false)}}>
+          <EditModal setShowModal={setShowModal} setShowModalEllipsis={setShowModalEllipsis} post={post}/>
         </Modal>
       )}
     </>

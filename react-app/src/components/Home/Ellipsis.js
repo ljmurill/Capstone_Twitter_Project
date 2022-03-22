@@ -2,29 +2,18 @@ import React, {useState, useEffect} from "react";
 import EditModalSetUp from "../EditDeleteModal/EditModalSetUp";
 import DeleteModalSetUp from "../EditDeleteModal/DeleteModalSetup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Modal } from "../ModalContext/Modal";
+import EllipsisModal from "./EllipsisModal";
 
 function Ellipsis({ post }){
-    const [menu, setMenu] = useState('');
 
-    const handleMenu = () => {
-        setMenu(true)
-    }
-
-
-    useEffect(() => {
-        if (!menu) return;
-
-        const closeMenu = () => {
-
-          setMenu(false);
-        };
-
+    const [showModal, setShowModal] = useState(false);
 
 
         // document.querySelector('.borderTopPost').addEventListener('click', closeMenu);
 
         // return () => document.querySelector('.borderTopPost').removeEventListener("click", closeMenu);
-    }, [menu]);
+
 
 
     // const openMenu =() => {
@@ -36,16 +25,12 @@ function Ellipsis({ post }){
 
     return (
         <>
-            <div className="zIndexDropDownMenu">
-
-                {menu ? (
-                        <div className="editDeleteDropDown">
-                            <EditModalSetUp post={post}/>
-                            <DeleteModalSetUp post={post}/>
-                        </div>
-                ): <FontAwesomeIcon icon="fa-solid fa-ellipsis" className="ellipsisColor" onClick={handleMenu}/>}
-
-            </div>
+            <FontAwesomeIcon icon="fa-solid fa-ellipsis" className="ellipsisColor" onClick={() => setShowModal(true)}/>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                  <EllipsisModal setShowModal={setShowModal} post={post}/>
+                </Modal>
+            )}
         </>
     )
 }

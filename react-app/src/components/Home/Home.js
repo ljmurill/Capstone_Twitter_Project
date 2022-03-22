@@ -126,11 +126,11 @@ function HomeFeed(){
                                             <p className="pElementHome">{post.tweet}</p>
                                             {post.image ? <img className='tweetImageOnHome' src={post.image}/>: ''}
                                         </div>
+                                        <div>
+                                            <CreateCommentSetUp post={post}/>
+                                            {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <CreateCommentSetUp post={post}/>
-                                    {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
                                 </div>
                             </>
                         </div>

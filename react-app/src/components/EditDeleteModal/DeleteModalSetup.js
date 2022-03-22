@@ -5,14 +5,21 @@ import DeleteModal from "./DeleteModal";
 
 
 
-function DeleteModalSetUp({ post }) {
+function DeleteModalSetUp({ post, setShowModalEllipsis }) {
   const [showModal, setShowModal] = useState(false);
+
+  const handleClick = () => {
+    setShowModal(true)
+
+  }
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Delete</button>
+      <button onClick={handleClick}>Delete</button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <DeleteModal setShowModal={setShowModal} post={post}/>
+        <Modal onClose={() => {
+          setShowModalEllipsis(false);
+          setShowModal(false)}}>
+          <DeleteModal setShowModal={setShowModal} setShowModalEllipsis={setShowModalEllipsis} post={post}/>
         </Modal>
       )}
     </>

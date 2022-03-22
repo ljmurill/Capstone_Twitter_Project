@@ -74,10 +74,10 @@ function SpecificPost(){
                             <p className="pElementHome">{post.tweet}</p>
                             {post.image ? <img className='tweetImageOnHome' src={post.image}/>: ''}
                         </div>
+                        <div>
+                            <CreateCommentSetUp post={post}/>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <CreateCommentSetUp post={post}/>
                 </div>
                 <div className="formProfilePicPostPage">
                     <div className="imageAndFormPostPage">

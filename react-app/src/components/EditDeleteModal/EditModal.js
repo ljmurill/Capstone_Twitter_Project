@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updatePost, updateComment } from "../../store/post";
 
-function EditModal({post, setShowModal}){
+function EditModal({post, setShowModal, setShowModalEllipsis}){
     const [tweet, setTweet] = useState(post.tweet);
     const [image, setImage] = useState(post.image);
     const [comment, setComment] = useState(post.comment);
@@ -22,6 +22,7 @@ function EditModal({post, setShowModal}){
                     setErrors(result);
                 }else{
                     setShowModal(false);
+                    setShowModalEllipsis(false);
                 }
 
 
@@ -36,7 +37,8 @@ function EditModal({post, setShowModal}){
                     setErrors(result);
                 }else{
                     setShowModal(false);
-                    
+                    setShowModalEllipsis(false);
+
                 }
         }
     }
