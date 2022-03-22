@@ -6,6 +6,7 @@ import EditModal from "./EditModal";
 
 function EditModalSetUp({ post }) {
   const [showModal, setShowModal] = useState(false);
+  console.log('asfdsdfadsfadsfadsfdsaf')
   return (
     <>
       <button onClick={() => setShowModal(true)}>Edit</button>

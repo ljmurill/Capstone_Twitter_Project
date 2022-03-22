@@ -46,11 +46,10 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <NavBar />
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/posts/:postId' exact={true} >
-          <NavBar />
+
           <SpecificPost />
         </ProtectedRoute>
         <ProtectedRoute path='/homefeed' exact={true} >

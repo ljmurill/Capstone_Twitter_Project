@@ -9,7 +9,7 @@ function JotModalSetUp({ user }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Jot</button>
+      <button className='jotNavBarButton' onClick={() => setShowModal(true)}>Jot</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <JotModal setShowModal={setShowModal} user={user}/>

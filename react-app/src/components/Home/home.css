@@ -1,0 +1,90 @@
+.formProfilePicHomePage{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.inputHomePage{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+    width: 300px;
+
+    font-size: large;
+}
+
+.jotButtonOnHomePage{
+    border: none;
+    color: white;
+    border-radius: 9999px;
+    background-color: rgb(29, 155, 240);
+    width: 60px;
+    height: 30px;
+}
+
+.buttonHomePageDiv{
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px gray solid;
+    padding-top: 10px;
+}
+
+.topOfHomePage{
+    margin: 20px;
+
+}
+
+.profilePicTopHome{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.formAndButtonDiv{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tweetUsernameEditDeleteDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightSideOfTweetHome{
+    width: 100%;
+}
+
+.pElementHome{
+    margin: 0;
+}
+
+.overAllTweetDiv{
+    padding: 15px;
+    border-top: 1px solid gray;
+}
+
+.tweetImageOnHome{
+    width: 500px;
+    height: 450px;
+    border-radius: 5%;
+}
+
+.ellipsisColor{
+    color: gray;
+}
+
+.editDeleteDropDown{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ellipsisHide{
+    display: none;
+}
+
+.zIndexDropDownMenu{
+    z-index: 123;
+    position: relative;
+}

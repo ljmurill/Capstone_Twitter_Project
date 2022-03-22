@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutModalSetUp from '../components/auth/LogoutModalSetup';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 import JotModalSetUp from './JotModal.js/JotModalSetup';
@@ -10,16 +10,16 @@ const NavBar = () => {
   const currentUser = useSelector(state => state.session.user)
   return (
     <nav className='navBarMainDiv'>
-          <div>
-            <NavLink to='/homefeed' exact={true} activeClassName='active'>
+          <div className='topNavSection'>
+            <NavLink to='/homefeed' exact={true} activeClassName='active' className='linkTextDecoration'>
               <div className='white'><FontAwesomeIcon icon="fa-solid fa-house" />Home</div>
             </NavLink>
 
-            <NavLink to='/users' exact={true} activeClassName='active'>
+            <NavLink to='/users' exact={true} activeClassName='active' className='linkTextDecoration'>
             <div className='white'><FontAwesomeIcon icon="fa-regular fa-user" />Users</div>
             </NavLink>
 
-            <NavLink to={`/users/${currentUser.id}`} exact={true} activeClassName='active'>
+            <NavLink to={`/users/${currentUser.id}`} exact={true} activeClassName='active' className='linkTextDecoration'>
             <div className='white'><FontAwesomeIcon icon="fa-regular fa-user" />Profile</div>
             </NavLink>
 
@@ -28,7 +28,7 @@ const NavBar = () => {
 
 
           <div>
-            <LogoutButton />
+            <LogoutModalSetUp />
           </div>
 
     </nav>

@@ -4,3 +4,11 @@ body{
     background-color: black;
     color: white;
 }
+
+.linkTextDecoration{
+    text-decoration: none;
+}
+
+.active{
+    font-weight: bolder;
+}

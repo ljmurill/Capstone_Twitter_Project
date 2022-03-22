@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { createJot, getFeedPosts } from "../../store/post";
 import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar";
-import EditModalSetUp from "../EditDeleteModal/EditModalSetUp";
-import DeleteModalSetUp from "../EditDeleteModal/DeleteModalSetup";
-
+import Ellipsis from "./Ellipsis";
+import './home.css'
 import { getAllComments } from "../../store/comment";
 import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EditModalSetUp from "../EditDeleteModal/EditModalSetUp";
+import DeleteModalSetUp from "../EditDeleteModal/DeleteModalSetup";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -19,7 +21,7 @@ function HomeFeed(){
     const posts = useSelector(state => state.post);
     const currentUser = useSelector(state => state.session.user);
     const allComments = useSelector(state => state.comment.allComments);
-    console.log(posts, '--------------------')
+
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -27,6 +29,7 @@ function HomeFeed(){
         dispatch(getAllComments())
         dispatch(getFeedPosts())
     },[])
+
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -57,19 +60,21 @@ function HomeFeed(){
 
     }
 
+
     return(
         <div className="homeFeedLayout">
 
             <NavBar/>
 
             <div className="border">
-                <div>
+                <div className="topOfHomePage">
                     <div>
                         <h2>Home</h2>
                     </div>
-                    <div>
-                        <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic}/>
-                        <form onSubmit={handleSubmit}>
+                    <div className="formProfilePicHomePage">
+                        <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic}/>
+                        <div className="formAndButtonDiv">
+                        <form>
                             <div className='postErrors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>
@@ -77,6 +82,7 @@ function HomeFeed(){
                             </div>
                             <div>
                                 <input
+                                className="inputHomePage"
                                 name="tweet"
                                 placeholder="What's happening?"
                                 onChange={(e)=> setTweet(e.target.value)}
@@ -86,34 +92,47 @@ function HomeFeed(){
                             <div>
                                 <input
                                 name="tweet"
+                                className="inputHomePage"
                                 placeholder="Image (optional)"
                                 onChange={(e)=> setImage(e.target.value)}
                                 value={image}
                                 ></input>
                             </div>
-                            <button type="submit">Jot</button>
+
                         </form>
+                        <div className="buttonHomePageDiv">
+                            <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Jot</button>
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <div className="homeFeedHiddenScroll">
                     {posts && Object.values(posts).map((post, i) => (
-                        <div key={i}>
-                        {(post !== Object.values(posts)[[Object.values(posts).length -1]]) &&
-                            <>
-                                <div className='borderTopPost' onClick={(e) => handleClick(e, post.id)}>
-                                    <img className='profilePic' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
-                                    {post.username}
-                                    {post.tweet}
-                                    <img src={post.image}/>
+                        <div className='overAllTweetDiv' key={i}>
 
+                            <>
+                                <div className='borderTopPost' >
+                                    <div>
+                                        <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
+                                    </div>
+                                    <div className="rightSideOfTweetHome">
+                                        <div className="tweetUsernameEditDeleteDiv">
+                                            <p className="pElementHome">{post.username} @{post.username}</p>
+
+                                            <Ellipsis post={post}/>
+
+                                        </div>
+                                        <div onClick={(e) => handleClick(e, post.id)}>
+                                            <p className="pElementHome">{post.tweet}</p>
+                                            {post.image ? <img className='tweetImageOnHome' src={post.image}/>: ''}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <CreateCommentSetUp post={post}/>
                                     {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
-                                    <EditModalSetUp post={post}/>
-                                    <DeleteModalSetUp post={post}/>
                                 </div>
-                            </>}
+                            </>
                         </div>
                     ))}
                 </div>

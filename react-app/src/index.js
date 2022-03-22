@@ -7,10 +7,10 @@ import configureStore from './store';
 import { ModalProvider } from './components/ModalContext/Modal';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faHouse, faCalendarDays} from '@fortawesome/free-solid-svg-icons'
-import { faUser, faComment } from '@fortawesome/free-regular-svg-icons'
+import { faHouse, faCalendarDays, faEllipsis} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faComment} from '@fortawesome/free-regular-svg-icons'
 
-library.add(fab, faHouse, faUser, faComment,faCalendarDays)
+library.add(fab, faHouse, faUser, faComment,faCalendarDays, faEllipsis)
 
 const store = configureStore();
 

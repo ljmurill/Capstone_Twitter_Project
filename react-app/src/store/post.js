@@ -206,7 +206,7 @@ export default function postReducer(state= initialState, action){
     let newState;
     switch(action.type) {
         case FEED_POSTS:
-            newState = {...state}
+            newState = {...initialState}
             action.posts.posts.forEach(post => newState[post.id] = post)
             return newState;
         case CREATE_POSTS:
@@ -226,7 +226,7 @@ export default function postReducer(state= initialState, action){
             return newState;
         case PROFILE_POSTS:
 
-            newState = {...state};
+            newState = {...initialState};
 
             action.allPosts.total.forEach(post => {
                 newState[post.id] = post

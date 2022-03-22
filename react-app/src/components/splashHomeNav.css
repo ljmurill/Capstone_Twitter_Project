@@ -56,9 +56,13 @@
 
 .border{
     border: 1px solid gray;
+    width: 600px;
 }
 .borderTopPost{
-    border-top: 1px solid gray;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
 }
 .homeFeedHiddenScroll{
     overflow-y: scroll;
@@ -76,8 +80,22 @@
 }
 
 /* ****************** NavBar ****************** */
-
-
+.topNavSection{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+}
+.jotNavBarButton{
+    background-color: rgb(29, 155, 240);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    width: 225px;
+    height: 50px;
+    box-sizing: border-box;
+    font-size: x-large;
+}
 .navBarMainDiv{
     display: flex;
     flex-direction: column;
@@ -91,4 +109,69 @@
     color: white;
     display: flex;
     gap: 15px;
+    font-size: x-large;
+    border-radius: 9999px;
+    padding: 15px;
+}
+
+.white:hover{
+    background-color: rgb(51, 50, 50);
+}
+
+.allLogoutSection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 9999px;
+    width: 250px;
+    padding: 15px;
+}
+
+.allLogoutSection:hover{
+    background-color: rgb(51, 50, 50);
+}
+.leftLogOutSection{
+    display: flex;
+    align-items: center;
+}
+
+/* ****************** User ****************** */
+.profilePicMain{
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    border: 2px black solid;
+    position: relative;
+    bottom: 67px;
+    left: 15px
+}
+
+.userNameProfilePage{
+    margin: 0;
+}
+
+.backgroundImageProfile{
+    height: 200px;
+    width: 600px;
+    position: relative;
+}
+
+.parent{
+    position: relative;
+    height: 275px;
+}
+
+/* ****************** PostPage ****************** */
+
+.imageAndFormPostPage{
+    display: flex;
+    gap: 10px;
+}
+.formProfilePicPostPage{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    border-top: 1px gray solid;
+    padding-top: 10px;
 }
