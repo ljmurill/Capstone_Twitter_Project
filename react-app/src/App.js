@@ -21,6 +21,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getFeedPosts())
       setLoaded(true);
     })();
   }, [dispatch]);

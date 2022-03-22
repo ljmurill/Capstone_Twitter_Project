@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import EditModalSetUp from "./EditDeleteModal/EditModalSetUp";
 import DeleteModalSetUp from "./EditDeleteModal/DeleteModalSetup";
-import { getComments, createComment } from "../store/post";
+import { getComments, createComment, getFeedPosts } from "../store/post";
 import NavBar from "./NavBar";
 import Ellipsis from "./Home/Ellipsis";
 import CreateCommentSetUp from "./EditDeleteModal/createCommentSetUp";
@@ -22,6 +22,7 @@ function SpecificPost(){
 
     const currentUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.post[postId])
+    console.log(post, 'dsfdsafdasfadsfadssda');
     const comments = useSelector(state => state.post[postId].comments);
 
 
@@ -117,19 +118,6 @@ function SpecificPost(){
                 </div>
                 <div className="homeFeedHiddenScroll">
                         {comments && comments.map((comment, i) => (
-                            // <Link key={i} to={`/posts/${post.id}`}>
-                            // <div key={i}>
-
-                            //     <img className='profilePic' src={comment.profile_pic ? comment.profile_pic: defaultProfilePic}/>
-                            //     {comment.username}
-                            //     {comment.comment}
-                            //     <img src={comment.image}/>
-
-                            //     <div>
-                            //         <EditModalSetUp post={comment}/>
-                            //         <DeleteModalSetUp post={comment}/>
-                            //     </div>
-                            // </div>
                             <div className='overAllTweetDiv' key={i}>
 
                             <>

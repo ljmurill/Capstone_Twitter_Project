@@ -18,11 +18,11 @@ function User() {
   const { userId }  = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const total = useSelector(state => state.post)
+  let total = useSelector(state => state.post)
   const allComments = useSelector(state => state.comment.allComments);
 
-
-
+  total = Object.values(total).filter(post => post.user_id === +userId)
+  
   useEffect(() => {
     dispatch(profilePostsComments(userId))
     dispatch(getAllComments())
@@ -34,7 +34,7 @@ function User() {
       const user = await response.json();
       setUser(user);
     })();
-  }, [userId]);
+  }, [dispatch, userId]);
 
   if (!user) {
     return null;
@@ -43,8 +43,8 @@ function User() {
   const handleClick = (e, postId) => {
     e.preventDefault()
     history.push(`/posts/${postId}`)
+  }
 
-}
 
   return (
       <div className="homeFeedLayout">
@@ -52,7 +52,8 @@ function User() {
         <div className="border">
           <div>
             <h1 className='userNameProfilePage'>{user.username}</h1>
-          <div>{Object.values(total).length > 0 ? Object.values(total).length: ''} Jots</div>
+          {/* <div>{Object.values(total).length > 0 ? Object.values(total).length: ''} Jots</div> */}
+          <div>{total.length > 0 ? total.length: ''} Jots</div>
           </div>
 
             <div className='parent'>
@@ -66,10 +67,11 @@ function User() {
             </div>
 
           <div className="homeFeedHiddenScroll">
-            {total && Object.values(total).map((post, i) => (
-              <div className='overAllTweetDiv' key={i}>
+            {/* {total && Object.values(total).map((post, i) => ( */}
+            {total && total.map((post, i) => (
 
-              <>
+              <div className='overAllTweetDiv' key={i}>
+                <>
                   <div className='borderTopPost' >
                       <div>
                           <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
@@ -93,7 +95,7 @@ function User() {
                   </div>
               </>
           </div>
-            ))}
+          ))}
           </div>
         </div>
       </div>
