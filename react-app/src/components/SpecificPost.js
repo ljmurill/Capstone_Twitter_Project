@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import EditModalSetUp from "./EditDeleteModal/EditModalSetUp";
 import DeleteModalSetUp from "./EditDeleteModal/DeleteModalSetup";
-import { getComments, createComment, getFeedPosts } from "../store/post";
+import { getComments, createComment, getFeedPosts, profilePostsComments, totalPosts } from "../store/post";
 import NavBar from "./NavBar";
 import Ellipsis from "./Home/Ellipsis";
 import CreateCommentSetUp from "./EditDeleteModal/createCommentSetUp";
@@ -18,11 +18,12 @@ function SpecificPost(){
     const [errors, setErrors] = useState([]);
     const {postId} = useParams();
 
+
     const dispatch = useDispatch();
 
     const currentUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.post[postId])
-    console.log(post, 'dsfdsafdasfadsfadssda');
+
     const comments = useSelector(state => state.post[postId].comments);
 
 
@@ -67,8 +68,8 @@ function SpecificPost(){
                     <div className="rightSideOfTweetHome">
                         <div className="tweetUsernameEditDeleteDiv">
                             <p className="pElementHome">{post.username} @{post.username}</p>
-
-                            <Ellipsis post={post}/>
+                            {post.user_id === currentUser.id &&
+                                <Ellipsis post={post}/>}
 
                         </div>
                         <div>
@@ -129,7 +130,7 @@ function SpecificPost(){
                                         <div className="tweetUsernameEditDeleteDiv">
                                             <p className="pElementHome">{comment.username} @{comment.username}</p>
 
-                                            <Ellipsis post={comment}/>
+                                            {comment.user_id === currentUser.id && <Ellipsis post={comment}/>}
 
                                         </div>
                                         <div>

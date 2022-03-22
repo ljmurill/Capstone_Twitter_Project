@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import Splash from './components/Splash';
 import HomeFeed from './components/Home/Home';
 import SpecificPost from './components/SpecificPost';
-import { getFeedPosts } from './store/post';
+import { getFeedPosts, totalPosts } from './store/post';
 import {getAllComments} from './store/comment';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getFeedPosts())
+      await dispatch(totalPosts())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -50,7 +50,6 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/posts/:postId' exact={true} >
-
           <SpecificPost />
         </ProtectedRoute>
         <ProtectedRoute path='/homefeed' exact={true} >

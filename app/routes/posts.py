@@ -16,6 +16,10 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{error}')
     return errorMessages
 
+@post_routes.route('/all')
+def all_posts():
+    all = Post.query.all()
+    return {'posts': [post.to_dict() for post in all]}
 
 @post_routes.route('')
 def get_posts():

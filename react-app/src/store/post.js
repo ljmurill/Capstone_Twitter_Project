@@ -5,6 +5,12 @@ const CREATE_POSTS = 'post/CREATE_POSTS';
 const EDIT_POST = 'post/EDIT_POST';
 const DELETE_POST = 'post/DELETE_POST';
 const PROFILE_POSTS = 'post/PROFILE_POST';
+const GET_ALL_POSTS = 'post/GET_ALL_POSTS';
+
+const allPosts = (allPosts) => ({
+    type: GET_ALL_POSTS,
+    allPosts
+})
 
 const profilePosts = (allPosts) => ({
     type:PROFILE_POSTS,
@@ -30,6 +36,15 @@ const erasePost = (post) => ({
     type: DELETE_POST,
     post
 })
+
+export const totalPosts = () => async(dispatch) => {
+    const response = await fetch('/posts/all')
+
+    if (response.ok){
+        const total = await response.json()
+        dispatch(allPosts(total))
+    }
+}
 
 export const profilePostsComments = (userId) => async(dispatch) => {
     const response = await fetch(`/api/users/${userId}/posts`);
@@ -225,16 +240,18 @@ export default function postReducer(state= initialState, action){
             delete newState[action.post.id];
             return newState;
         case PROFILE_POSTS:
-
             newState = {...initialState};
-
             action.allPosts.total.forEach(post => {
                 newState[post.id] = post
             })
-
-
             return newState;
 
+        case GET_ALL_POSTS:
+            newState = {...initialState};
+            action.allPosts.posts.forEach(post => {
+                newState[post.id] = post
+            })
+            return newState;
 
         // ***************COMMENTS********************
 

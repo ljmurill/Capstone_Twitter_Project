@@ -18,11 +18,12 @@ function User() {
   const { userId }  = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const currentUser = useSelector(state => state.session.user)
   let total = useSelector(state => state.post)
   const allComments = useSelector(state => state.comment.allComments);
 
   total = Object.values(total).filter(post => post.user_id === +userId)
-  
+
   useEffect(() => {
     dispatch(profilePostsComments(userId))
     dispatch(getAllComments())
@@ -80,7 +81,7 @@ function User() {
                           <div className="tweetUsernameEditDeleteDiv">
                               <p className="pElementHome">{post.username} @{post.username}</p>
 
-                              <Ellipsis post={post}/>
+                              {post.user_id === currentUser.id && <Ellipsis post={post}/>}
 
                           </div>
                           <div onClick={(e) => handleClick(e, post.id)}>

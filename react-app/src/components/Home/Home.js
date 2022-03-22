@@ -119,7 +119,7 @@ function HomeFeed(){
                                         <div className="tweetUsernameEditDeleteDiv">
                                             <p className="pElementHome">{post.username} @{post.username}</p>
 
-                                            <Ellipsis post={post}/>
+                                            {post.user_id === currentUser.id && <Ellipsis post={post}/>}
 
                                         </div>
                                         <div onClick={(e) => handleClick(e, post.id)}>
