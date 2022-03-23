@@ -55,6 +55,9 @@ function SpecificPost(){
         }
 
     }
+    const handleError =(e) => {
+        e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
+    }
 
     return(
         <div className="homeFeedLayout">
@@ -63,7 +66,7 @@ function SpecificPost(){
                 <h2>Jot</h2>
                 <div className='borderTopPost' >
                     <div>
-                        <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
+                        <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                     </div>
                     <div className="rightSideOfTweetHome">
                         <div className="tweetUsernameEditDeleteDiv">
@@ -74,7 +77,7 @@ function SpecificPost(){
                         </div>
                         <div>
                             <p className="pElementHome">{post.tweet}</p>
-                            {post.image ? <img className='tweetImageOnHome' src={post.image}/>: ''}
+                            {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                         </div>
                         <div>
                             <CreateCommentSetUp post={post}/>
@@ -83,7 +86,7 @@ function SpecificPost(){
                 </div>
                 <div className="formProfilePicPostPage">
                     <div className="imageAndFormPostPage">
-                        <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic}/>
+                        <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
 
                         <form onSubmit={handleSubmit}>
                             <div className='postErrors'>
@@ -124,7 +127,7 @@ function SpecificPost(){
                             <>
                                 <div className='borderTopPost' >
                                     <div>
-                                        <img className='profilePicTopHome' src={comment.profile_pic ? comment.profile_pic: defaultProfilePic}/>
+                                        <img className='profilePicTopHome' src={comment.profile_pic ? comment.profile_pic: defaultProfilePic} onError={handleError}/>
                                     </div>
                                     <div className="rightSideOfTweetHome">
                                         <div className="tweetUsernameEditDeleteDiv">
@@ -135,7 +138,7 @@ function SpecificPost(){
                                         </div>
                                         <div>
                                             <p className="pElementHome">{comment.comment}</p>
-                                            {comment.image ? <img className='tweetImageOnHome' src={comment.image}/>: ''}
+                                            {comment.image ? <img className='tweetImageOnHome' src={comment.image} onError={handleError}/>: ''}
                                         </div>
                                     </div>
                                 </div>

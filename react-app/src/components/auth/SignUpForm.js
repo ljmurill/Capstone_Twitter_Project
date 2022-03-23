@@ -20,15 +20,19 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, profile_pic, background_image));
+    const data = await dispatch(signUp(username, email, password, profile_pic, background_image));
+    if (password !== repeatPassword) {
       if (data) {
-        setErrors(data)
+        setErrors([...data, 'Passwords Do Not Match'])
       }else{
-        document.querySelector('body').classList.remove('login')
+        setErrors(['Passwords Do Not Match'])
       }
+    }else if(password === repeatPassword && data){
+      setErrors([...data])
+    }else{
+      document.querySelector('body').classList.remove('login')
     }
-  };
+    };
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -106,6 +110,7 @@ const SignUpForm = () => {
           >
           </input>
         </div>
+
         <div>
           <label>Background Image Url</label>
           <input
@@ -115,6 +120,7 @@ const SignUpForm = () => {
           value={background_image}
           >
           </input>
+
         </div>
         <button type='submit'>Sign Up</button>
       </form>

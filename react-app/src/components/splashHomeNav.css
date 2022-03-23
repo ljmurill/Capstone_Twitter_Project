@@ -17,6 +17,10 @@
     font-size: 2vw;
 }
 
+.splashSubTitleSecond{
+    font-size: 2vw;
+    margin-top: 0;
+}
 /* rgb(29, 155, 240) */
 
 .splashSignInButton{
@@ -46,6 +50,22 @@
     margin-left: 25px;
 }
 
+.footerAtSplash{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-top: 1px gray solid;
+    color: gray;
+}
+
+.colorSplashFooter{
+    color: gray;
+
+}
 
 /* ****************** Home Feed ****************** */
 

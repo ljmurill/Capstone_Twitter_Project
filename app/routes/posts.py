@@ -24,7 +24,9 @@ def all_posts():
 @post_routes.route('')
 def get_posts():
     feed = current_user.followed_posts()
-    return {'posts': [post.to_dict() for post in feed]}
+    feed = [post.to_dict() for post in feed]
+    print(feed, '============================')
+    return {'posts': feed}
 
 
 @post_routes.route('', methods=['POST'])

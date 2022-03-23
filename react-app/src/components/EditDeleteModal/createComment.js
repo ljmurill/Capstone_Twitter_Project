@@ -42,16 +42,21 @@ function CreateComment({post, setShowModal}){
 
     }
 
+    const handleError =(e) => {
+        e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
+      }
+
+
     return(
         <>
             <div>
-                <img className='profilePic' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
+                <img className='profilePic' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                 {post.username}
                 {post.tweet}
-                <img src={post.image}/>
+                <img src={post.image} onError={handleError}/>
             </div>
             <div>
-                <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic}/>
+                <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
                 <form onSubmit={handleSubmit}>
                     <div className='postErrors'>
                         {errors.map((error, ind) => (

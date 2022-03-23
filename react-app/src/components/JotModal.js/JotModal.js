@@ -34,9 +34,14 @@ function JotModal({user, setShowModal}){
         }
 
     }
+
+    const handleError =(e) => {
+        e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
+      }
+
     return(
         <div>
-        <img className='profilePic' src={user.profile_pic ? user.profile_pic: defaultProfilePic}/>
+        <img className='profilePic' src={user.profile_pic ? user.profile_pic: defaultProfilePic} onError={handleError}/>
         <form onSubmit={handleSubmit}>
             <div className='postErrors'>
                 {errors.map((error, ind) => (

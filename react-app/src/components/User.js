@@ -24,7 +24,7 @@ function User() {
   let total = useSelector(state => state.post)
   const allComments = useSelector(state => state.comment.allComments);
 
-  total = Object.values(total).filter(post => post.user_id === +userId)
+  total = Object.values(total).reverse().filter(post => post.user_id === +userId)
 
   useEffect(() => {
     dispatch(profilePostsComments(userId))
@@ -74,6 +74,9 @@ function User() {
     setFollowers(() => followers - 1)
 
   }
+  const handleError =(e) => {
+    e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
+  }
 
   return (
       <div className="homeFeedLayout">
@@ -87,8 +90,8 @@ function User() {
 
           <div className="homeFeedHiddenScroll">
             <div className='parent'>
-              <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground}/>
-              <img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic}/>
+              <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground} onError={handleError}/>
+              <img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
             </div>
             <div className='userInformation'>
               <div>
@@ -115,7 +118,7 @@ function User() {
                 <>
                   <div className='borderTopPost' >
                       <div>
-                          <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic}/>
+                          <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                       </div>
                       <div className="rightSideOfTweetHome">
                           <div className="tweetUsernameEditDeleteDiv">
@@ -126,7 +129,7 @@ function User() {
                           </div>
                           <div onClick={(e) => handleClick(e, post.id)}>
                               <p className="pElementHome">{post.tweet}</p>
-                              {post.image ? <img className='tweetImageOnHome' src={post.image}/>: ''}
+                              {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                           </div>
                             <div>
                                 <CreateCommentSetUp post={post}/>

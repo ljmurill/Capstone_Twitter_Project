@@ -11,12 +11,15 @@ const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twit
 function LogoutModalSetUp() {
   const [showModal, setShowModal] = useState(false);
   const currentUser = useSelector(state => state.session.user);
+  const handleError =(e) => {
+    e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
+  }
 
   return (
     <>
     <div className='allLogoutSection' onClick={() => setShowModal(true)}>
         <div className="leftLogOutSection">
-            <img className="profilePic" src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic}/>
+            <img className="profilePic" src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
             <div>
                 <div>{currentUser.username}</div>
                 <div>@{currentUser.username}</div>

@@ -25,8 +25,8 @@ def all_comments():
 
 @comment_routes.route('/<int:id>')
 def specific_post_comments(id):
-    comments = Comment.query.filter(Comment.post_id == id).all()
-    print(comments, '++++++++++++++++++++++++++')
+    comments = Comment.query.filter(Comment.post_id == id).order_by(Comment.created_at.desc()).all()
+
     return {'comments': [comment.to_dict() for comment in comments]}
 
 

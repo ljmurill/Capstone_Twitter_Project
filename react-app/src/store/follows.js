@@ -91,18 +91,16 @@ export default function followReducer(state=initialState, action){
         //     action.followers.followers.forEach(user => newState.followers[user.id] = user);
         //     return newState;
         case CURRENT_USER_FOLLOWING:
-            newState={...state};
-            console.log(action.current, 'dsfsdfsdddsfdsfsdfsdf')
+            newState={current:{}};
             action.current.following.forEach(user => newState.current[user.id] = user);
             return newState;
         case FOLLOW:
-            newState={...state}
+            newState={...initialState}
             newState.current[action.user.id] = {...action.user}
 
             return newState;
         case UNFOLLOW:
-            newState={...state}
-
+            newState={...initialState}
             delete newState.current[action.user.id];
             return newState;
         default:

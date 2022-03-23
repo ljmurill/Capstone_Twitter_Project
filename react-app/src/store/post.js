@@ -226,13 +226,13 @@ export default function postReducer(state= initialState, action){
             return newState;
         case CREATE_POSTS:
             newState = {...state};
-                newState[action.post.id] = {...action.post}
+            newState[action.post.id] = {...action.post}
 
             return newState;
         case EDIT_POST:
             newState = {...state};
 
-                newState[action.post.id] = {...action.post}
+            newState[action.post.id] = {...action.post}
 
             return newState;
         case DELETE_POST:
