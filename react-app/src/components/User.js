@@ -85,6 +85,7 @@ function User() {
           <div>{total.length > 0 ? total.length: ''} Jots</div>
           </div>
 
+          <div className="homeFeedHiddenScroll">
             <div className='parent'>
               <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground}/>
               <img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic}/>
@@ -107,7 +108,6 @@ function User() {
 
             </div>
 
-          <div className="homeFeedHiddenScroll">
             {/* {total && Object.values(total).map((post, i) => ( */}
             {total && total.map((post, i) => (
 

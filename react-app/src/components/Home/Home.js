@@ -7,6 +7,7 @@ import Ellipsis from "./Ellipsis";
 import './home.css'
 import { getAllComments } from "../../store/comment";
 import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
+import Likes from "../Likes";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -126,6 +127,7 @@ function HomeFeed(){
                                         <div>
                                             <CreateCommentSetUp post={post}/>
                                             {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
+                                            <Likes post={post}/>
                                         </div>
                                     </div>
                                 </div>

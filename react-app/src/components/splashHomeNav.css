@@ -180,3 +180,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.heartColor{
+    color: red;
+}
