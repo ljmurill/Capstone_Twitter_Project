@@ -175,3 +175,8 @@
     border-top: 1px gray solid;
     padding-top: 10px;
 }
+
+.userInformation{
+    display: flex;
+    justify-content: space-between;
+}

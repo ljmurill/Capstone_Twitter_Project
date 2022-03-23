@@ -7,9 +7,6 @@ import Ellipsis from "./Ellipsis";
 import './home.css'
 import { getAllComments } from "../../store/comment";
 import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import EditModalSetUp from "../EditDeleteModal/EditModalSetUp";
-import DeleteModalSetUp from "../EditDeleteModal/DeleteModalSetup";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
