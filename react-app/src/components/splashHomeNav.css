@@ -295,3 +295,52 @@
 .spanUsernameCommentModal{
     color: rgb(29, 155, 240);
 }
+
+
+.userListSection{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 9999px;
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.userListSection:hover{
+    background-color: rgb(51, 50, 50);
+}
+
+.userListNavLinks{
+    color: white;
+    text-decoration: none;
+}
+
+.userListPageLayout{
+    display: flex;
+
+}
+
+.hiddenScrollOnUserList{
+    overflow-y: scroll;
+    height: 700px;
+}
+
+
+.hiddenScrollOnUserList::-webkit-scrollbar{
+    display: none;
+}
+
+.flexWrapOfUsers{
+    display: flex;
+    flex-wrap:wrap;
+    width: 800px;
+    border: 1px solid white
+}
+
+.userListTitleAndUserList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -111,7 +111,7 @@ function SpecificPost(){
                                 <input
                                 name="tweet"
                                 className="inputHomePage"
-                                placeholder="Image (optional)"
+                                placeholder="Image Url (optional)"
                                 onChange={(e)=> setImage(e.target.value)}
                                 value={image}
                                 ></input>

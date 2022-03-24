@@ -86,7 +86,7 @@ function User() {
 
           <h1 className='userNameProfilePage'>{user.username}</h1>
           {/* <div>{Object.values(total).length > 0 ? Object.values(total).length: ''} Jots</div> */}
-          <div className='numberOfJotsProfilePage'>{total.length > 0 ? total.length: 0} Jots</div>
+          <div className='numberOfJotsProfilePage'>{total.length > 0 ? total.length: 0} Jot(s)</div>
 
 
           <div className="homeFeedHiddenScroll">

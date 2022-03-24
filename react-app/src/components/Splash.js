@@ -15,7 +15,7 @@ function Splash(){
     useEffect(() => {
         document.querySelector('body').classList.remove('login')
     },[])
-    
+
     return(
         <div>
             <div className='splashPage'>
@@ -31,7 +31,7 @@ function Splash(){
                 <Link to='/sign-up' onClick={() => document.querySelector('body').classList.add('login')}><button className='splashSignUpButton'>Sign Up</button></Link>
 
                 <div>
-                    <p>Already Have am account?</p>
+                    <p>Already have an account?</p>
                     <Link to='/login' onClick={() => document.querySelector('body').classList.add('login')}><button className='splashSignInButton'>Sign In</button></Link>
                 </div>
             </div>
