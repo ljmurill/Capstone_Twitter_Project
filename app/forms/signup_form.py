@@ -1,7 +1,7 @@
 from unittest import TestCase
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextField, DateTimeField
-from wtforms.validators import DataRequired, Email, ValidationError, Length
+from wtforms.validators import DataRequired, Email, ValidationError, Length, EqualTo
 from app.models import User
 
 def no_space(form, field):
@@ -48,7 +48,8 @@ class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(message='Username required'), username_exists, no_space, Length(min=5, max=30, message='Username must be between 5 to 30 characters long')])
     email = StringField('email', validators=[DataRequired(message='Email required'), user_exists, Email(message='Enter a valid email')])
-    password = StringField('password', validators=[DataRequired(message='Password required'), Length(min=3, message='Password must be at least 3 characters long'), no_space])
+    password = StringField('password', validators=[DataRequired(message='Password required'), EqualTo('confirm_password', message='Passwords must match') ,Length(min=3, message='Password must be at least 3 characters long'), no_space])
+    confirm_password = StringField('confirm_password', validators=[DataRequired(message='Confirm Password required')])
     profile_pic = TextField('profile_pic', validators=[profilepicurl])
     background_image = TextField('background_image', validators=[backgroundimageurl])
     created_at = StringField('created_at')

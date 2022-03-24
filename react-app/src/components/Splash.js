@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './splashHomeNav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +12,10 @@ function Splash(){
         e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
     }
 
-
+    useEffect(() => {
+        document.querySelector('body').classList.remove('login')
+    },[])
+    
     return(
         <div>
             <div className='splashPage'>

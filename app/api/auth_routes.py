@@ -64,7 +64,7 @@ def sign_up():
     month_year = date.strftime('%B %Y')
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    if form.validate_on_submit() and form.data['password'] == form.data['confirm_password']:
         user = User(
             username=form.data['username'],
             email=form.data['email'],

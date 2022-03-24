@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './auth.css'
 import { getAllComments } from '../../store/comment';
 import { getFeedPosts } from '../../store/post';
@@ -28,7 +29,7 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }else{
-    
+
       document.querySelector('body').classList.remove('login')
     }
   };
@@ -52,42 +53,48 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='loginFormDiv'>
-      <Link to='/' onClick={() => document.querySelector('body').classList.remove('login')}><button>Exit</button></Link>
-      <div className='actualLoginForm'>
-        <h2>Sign in to Jotter</h2>
-        <form onSubmit={onLogin} >
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+    <div>
+      <div className='signUpDiv'>
+        <Link to='/' className='xmarkOnLoginForm' onClick={() => document.querySelector('body').classList.remove('login')}><FontAwesomeIcon icon="fa-solid fa-xmark" size='2x' className='xmarkOnLoginForm' /></Link>
+        <div className='actualLoginForm'>
+          <h2 className='headerForLoginPage'>Sign in to Jotter</h2>
+          <form onSubmit={onLogin} className='loginInputsButtonsErrors'>
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <div>
+
+              <input
+                className='loginFormInput'
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div>
+
+              <input
+                className='loginFormInput'
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+              />
+            </div>
+            <div className='ButtonsOnLoginFormDiv'>
+              <button type='submit' className='LoginPageButton'>Login</button>
+              <button type='submit' className='LoginPageButton' onClick={handleDemo}>Demo User</button>
+            </div>
+          </form>
+          <div className='lowerSectionLoginForm'>
+            <p>Don't have an account?</p>
+            <Link className='loginLinkBottom' to='/sign-up'>Sign Up</Link>
           </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              name='email'
-              type='text'
-              placeholder='Email'
-              value={email}
-              onChange={updateEmail}
-            />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={updatePassword}
-            />
-            <button type='submit'>Login</button>
-            <button type='submit' onClick={handleDemo}>Demo User</button>
-          </div>
-        </form>
-        <div>
-          <p>Don't have an account?</p>
-          <Link to='/sign-up'>Sign Up</Link>
         </div>
       </div>
     </div>

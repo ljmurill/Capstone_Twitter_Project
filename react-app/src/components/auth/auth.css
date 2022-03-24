@@ -1,10 +1,12 @@
-.loginFormDiv{
-    position: absolute;
-    top: 24%;
-    left: 34%;
+/* ***************** LOGIN ***************** */
+.signUpDiv{
+    position: relative;
     background-color: black;
-    width: 35vw;
-    height: 55vh;
+    width: 600px;
+    height: fit-content;
+    border-radius: 5%;
+    margin: 200px auto;
+    padding-bottom: 15px;
 }
 
 body.login{
@@ -14,5 +16,61 @@ body.login{
 .actualLoginForm{
     display: flex;
     flex-direction: column;
- 
+
+}
+
+.loginFormInput{
+    color: white;
+    width: 250px;
+    height: 40px;
+    border: 1px gray solid;
+    background-color: black;
+    outline-color: rgb(29, 155, 240);
+}
+
+.LoginPageButton{
+    color: black;
+    background-color: white;
+    border-radius: 9999px;
+    border: none;
+    width: 250px;
+    height: 35px;
+}
+
+.loginInputsButtonsErrors{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.headerForLoginPage{
+    text-align: center;
+
+}
+
+.ButtonsOnLoginFormDiv{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap:15px;
+
+}
+
+.lowerSectionLoginForm{
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+}
+.loginLinkBottom{
+    text-decoration: none;
+    color: rgb(29, 155, 240);
+}
+
+.xmarkOnLoginForm{
+    color: white;
+    margin-top: 15px;
+    margin-left: 10px;
 }

@@ -25,11 +25,11 @@ function HomeFeed(){
     const dispatch = useDispatch();
 
     useEffect(() => {
+        document.querySelector('body').classList.remove('login')
         dispatch(getAllComments())
         dispatch(getFeedPosts())
         dispatch(currentUserFollow(currentUser.id))
     },[])
-
 
     const handleSubmit = async(e) => {
         e.preventDefault();
