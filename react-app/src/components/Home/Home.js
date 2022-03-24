@@ -98,7 +98,7 @@ function HomeFeed(){
                                             <input
                                             name="tweet"
                                             className="inputHomePage"
-                                            placeholder="Image Url(optional)"
+                                            placeholder="Image Url (optional)"
                                             onChange={(e)=> setImage(e.target.value)}
                                             value={image}
                                             ></input>

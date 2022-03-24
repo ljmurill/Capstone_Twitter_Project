@@ -115,7 +115,7 @@ const SignUpForm = () => {
 
           <input
           className='loginFormInput'
-          placeholder='Profile Picture Url(Optional)'
+          placeholder='Profile Picture Url (Optional)'
           type='text'
           name='profile_pic'
           onChange={(e) => setProfilePic(e.target.value)}
@@ -128,7 +128,7 @@ const SignUpForm = () => {
 
           <input
           className='loginFormInput'
-          placeholder='Background Picture Url(Optional)'
+          placeholder='Background Picture Url (Optional)'
           type='text'
           name='background_image'
           onChange={(e) => setBackgroundImage(e.target.value)}

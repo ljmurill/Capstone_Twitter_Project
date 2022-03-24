@@ -63,7 +63,7 @@ function CreateComment({post, setShowModal}){
                         </div>
                         <div className="getWidthOfTextCommentModal">
                             <p className="commentModalTweetSize">{post.tweet}</p>
-                            {post.image && <p>Image: {post.image}</p>}
+                            {post.image && <p className="commentModalTweetSize">Image: {post.image}</p>}
                             {/* {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''} */}
                         </div>
                         <div className="ReplyingMessageCommentModal">
