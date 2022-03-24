@@ -19,10 +19,12 @@ You should now be ready to get started!
 
 ## Features
 
-# Posting a "Jot"
+### Posting a "Jot"
 You are able to post a jot from your sidebar and from the home page where you will see it appear on your home feed and profile page.
 ![homeFeed](https://user-images.githubusercontent.com/72574258/159960770-5283db6e-dc41-45e0-8140-4a347012c3e3.png)
+### Following Users
 You will be able to go onto users profile page where you will be able to see all there post and follow them so there post can be present on your home feed.
 ![profilePage](https://user-images.githubusercontent.com/72574258/159960732-0f2867af-a70b-4273-82b1-1963aeec26b0.png)
+### Replying to Jots
 You have the ability to comment from the specific post page or comment by clicking the comment icon which will activiate a modal with the post and form to comment.
 ![CommentFeature](https://user-images.githubusercontent.com/72574258/159960793-3d711ed8-702c-4021-987d-6c9560abf433.png)
