@@ -14,7 +14,7 @@ function DeleteModalSetUp({ post, setShowModalEllipsis }) {
   }
   return (
     <>
-      <button onClick={handleClick}>Delete</button>
+      <button className='EllipsisButtonModal' onClick={handleClick}>Delete</button>
       {showModal && (
         <Modal onClose={() => {
           setShowModalEllipsis(false);

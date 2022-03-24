@@ -33,21 +33,33 @@ function DeleteModal({post, setShowModal, setShowModalEllipsis}){
     return(
         <>
         {post.hasOwnProperty('comment') ?
-            <div className="deleteModal">
+            <div className='logoutModalExact'>
                 <h1>Delete Reply?</h1>
-                <p>This can't be undone and it will be removed from your profile, and the timeline of any accounts that follow you.</p>
-                <button onClick={handleDelete}>Delete</button>
-                <button onClick={() => {
-                    setShowModalEllipsis(false);
-                    setShowModal(false)}}>Cancel</button>
+                <div className='centerDivForLogOutModal'>
+                <p className='pElementAtUserNameFix'>This can't be undone and it will be removed from your profile, and the timeline of any accounts that follow you.</p>
+                    <div>
+                        <button  className='deleteButtonOnComment' onClick={handleDelete}>Delete</button>
+                    </div>
+                    <div>
+                        <button className='cancelDeleteButtonOnModal' onClick={() => {
+                            setShowModalEllipsis(false);
+                            setShowModal(false)}}>Cancel</button>
+                    </div>
+                </div>
             </div>:
-            <div className="deleteModal">
+            <div className='logoutModalExact'>
                 <h1>Delete Jot?</h1>
-                <p>This can't be undone and it will be removed from your profile, and the timeline of any accounts that follow you.</p>
-                <button onClick={handleDelete}>Delete</button>
-                <button onClick={() => {
-                    setShowModalEllipsis(false);
-                    setShowModal(false)}}>Cancel</button>
+                <div className='centerDivForLogOutModal'>
+                <p className='pElementAtUserNameFix'>This can't be undone and it will be removed from your profile, and the timeline of any accounts that follow you.</p>
+                    <div>
+                        <button className='deleteButtonOnComment' onClick={handleDelete}>Delete</button>
+                    </div>
+                    <div>
+                        <button  className='cancelDeleteButtonOnModal' onClick={() => {
+                            setShowModalEllipsis(false);
+                            setShowModal(false)}}>Cancel</button>
+                    </div>
+                </div>
             </div>}
         </>
     )

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updatePost, updateComment } from "../../store/post";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
 function EditModal({post, setShowModal, setShowModalEllipsis}){
     const [tweet, setTweet] = useState(post.tweet);
@@ -8,6 +11,10 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
     const [comment, setComment] = useState(post.comment);
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
+
+    const handleError =(e) => {
+        e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
+      }
 
     const handleEdit =async(e)=>{
         e.preventDefault();
@@ -46,54 +53,82 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
     return(
         <>
             {post.hasOwnProperty('comment') ?
-                <form onSubmit={handleEdit}>
-                    <div className='postErrors'>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                            ))}
+                <>
+                <FontAwesomeIcon icon="fa-solid fa-xmark" className='xmarkOnJotModal' onClick={() => {
+                    setShowModalEllipsis(false)
+                    setShowModal(false)}}/>
+                <div className="formProfilePicHomePage">
+                    <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                    <div className="formAndButtonDiv">
+                            <form className="formhomeWithInputsAndErrors">
+                                <div className='postErrors'>
+                                    {errors.map((error, ind) => (
+                                        <div key={ind}>{error}</div>
+                                        ))}
+                                </div>
+                                <div>
+                                    <input
+                                    className="inputHomePage"
+                                    name="comment"
+                                    placeholder="Jot your reply"
+                                    onChange={(e)=> setComment(e.target.value)}
+                                    value={comment}
+                                    ></input>
+                                </div>
+                                <div>
+                                    <input
+                                    name="tweet"
+                                    className="inputHomePage"
+                                    placeholder="Image (optional)"
+                                    onChange={(e)=> setImage(e.target.value)}
+                                    value={image}
+                                    ></input>
+                                </div>
+                            </form>
+                            <div className="buttonHomePageDiv">
+                                <button type="submit" className="updateJotButtonUpdateModal" onClick={handleEdit}>Update Reply</button>
+                            </div>
                     </div>
-                    <div>
-                        <input
-                        name="comment"
-                        placeholder="What's happening?"
-                        onChange={(e)=> setComment(e.target.value)}
-                        value={comment}
-                        ></input>
-                    </div>
-                    <div>
-                        <input
-                        name="image"
-                        placeholder="Image (optional)"
-                        onChange={(e)=> setImage(e.target.value)}
-                        value={(image === null) ? '': image}
-                        ></input>
-                    </div>
-                    <button type="submit">Update Reply</button>
-                </form> :
-                <form onSubmit={handleEdit}>
-                    <div className='postErrors'>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                            ))}
-                    </div>
-                    <div>
-                        <input
-                        name="tweet"
-                        placeholder="What's happening?"
-                        onChange={(e)=> setTweet(e.target.value)}
-                        value={tweet}
-                        ></input>
-                    </div>
-                    <div>
-                        <input
-                        name="image"
-                        placeholder="Image (optional)"
-                        onChange={(e)=> setImage(e.target.value)}
-                        value={(image === null) ? '': image}
-                        ></input>
-                    </div>
-                    <button type="submit">Jot</button>
-                </form>}
+                </div>
+            </> :
+                <>
+            <FontAwesomeIcon icon="fa-solid fa-xmark" className='xmarkOnJotModal' onClick={() => {
+                setShowModalEllipsis(false)
+                setShowModal(false)}}/>
+            <div className="formProfilePicHomePage">
+                <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                <div className="formAndButtonDiv">
+                        <form className="formhomeWithInputsAndErrors">
+                            <div className='postErrors'>
+                                {errors.map((error, ind) => (
+                                    <div key={ind}>{error}</div>
+                                    ))}
+                            </div>
+                            <div>
+                                <input
+                                className="inputHomePage"
+                                name="tweet"
+                                placeholder="What's happening?"
+                                onChange={(e)=> setTweet(e.target.value)}
+                                value={tweet}
+                                ></input>
+                            </div>
+                            <div>
+                                <input
+                                name="tweet"
+                                className="inputHomePage"
+                                placeholder="Image (optional)"
+                                onChange={(e)=> setImage(e.target.value)}
+                                value={image}
+                                ></input>
+                            </div>
+                        </form>
+                        <div className="buttonHomePageDiv">
+                            <button type="submit" className="updateJotButtonUpdateModal" onClick={handleEdit}>Update Jot</button>
+                        </div>
+                </div>
+            </div>
+        </>}
         </>
     )
 }

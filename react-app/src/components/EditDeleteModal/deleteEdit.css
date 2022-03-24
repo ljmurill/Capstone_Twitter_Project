@@ -1,3 +1,22 @@
-.deleteModal{
-    color: black;
+
+.deleteButtonOnComment{
+    border: 1px solid red;
+    border-radius: 9999px;
+    background-color: black;
+    color: red;
+    width: 250px;
+    height: 35px;
+}
+
+.deleteButtonOnComment:hover{
+    background-color: rgba(196, 47, 47, 0.301);
+}
+
+.cancelDeleteButtonOnModal{
+    border: 1px solid white;
+    border-radius: 9999px;
+    background-color: black;
+    color: white;
+    width: 250px;
+    height: 35px;
 }

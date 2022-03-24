@@ -14,7 +14,7 @@ function EditModalSetUp({ post, setShowModalEllipsis}) {
 
   return (
     <>
-      <button onClick={handleClick}>Edit</button>
+      <button className='EllipsisButtonModal' onClick={handleClick}>Edit</button>
       {showModal && (
         <Modal onClose={() => {
           setShowModalEllipsis(false);
