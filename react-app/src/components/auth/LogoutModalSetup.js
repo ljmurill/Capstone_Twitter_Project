@@ -19,10 +19,10 @@ function LogoutModalSetUp() {
     <>
     <div className='allLogoutSection' onClick={() => setShowModal(true)}>
         <div className="leftLogOutSection">
-            <img className="profilePic" src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+            <img className="profilePicTopHome" src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
             <div>
                 <div>{currentUser.username}</div>
-                <div>@{currentUser.username}</div>
+                <div className="pElementAtUserName">@{currentUser.username}</div>
             </div>
         </div>
         <FontAwesomeIcon icon="fa-solid fa-ellipsis" className="ellipsisColor"/>

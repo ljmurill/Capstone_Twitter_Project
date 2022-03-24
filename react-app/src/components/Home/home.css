@@ -2,6 +2,7 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    padding: 15px;
 }
 
 .inputHomePage{
@@ -29,11 +30,11 @@
     border-top: 1px gray solid;
     padding-top: 10px;
 }
-
+/*
 .topOfHomePage{
     margin: 20px;
 
-}
+} */
 
 .profilePicTopHome{
     border-radius: 50%;
@@ -56,18 +57,29 @@
 }
 
 .pElementHome{
-    margin: 0;
+    margin: 15px 0;
+
     overflow-wrap: break-word;
     word-break: break-all;
 }
+.pElementHomePostUsername{
+    margin:0;
+    font-weight: bold;
+}
+.pElementAtUserName{
+    color: gray;
+}
 
+.usernameAtUsernameDiv{
+    display: flex;
+}
 .overAllTweetDiv{
     padding: 15px;
     border-top: 1px solid gray;
 }
 
 .tweetImageOnHome{
-    width: 500px;
+    width: 570px;
     height: 450px;
     border-radius: 5%;
 }
@@ -89,4 +101,17 @@
 .zIndexDropDownMenu{
     z-index: 123;
     position: relative;
+}
+
+.HomeTitleHomePage{
+    margin-left:15px;
+}
+
+.formhomeWithInputsAndErrors{
+    padding-bottom: 10px;
+}
+
+.CommentIconAndNumberSpace{
+    display: flex;
+    gap: 5px;
 }

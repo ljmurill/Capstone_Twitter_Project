@@ -63,16 +63,20 @@ function SpecificPost(){
         <div className="homeFeedLayout">
             <NavBar />
             <div className="border">
-                <h2>Jot</h2>
-                <div className='borderTopPost' >
+            <div className="HomeTitleHomePage"><h2>Jot</h2></div>
+                <div className="homeFeedHiddenScroll">
+                <div className='borderTopPostSpecificPost' >
                     <div>
                         <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                     </div>
                     <div className="rightSideOfTweetHome">
                         <div className="tweetUsernameEditDeleteDiv">
-                            <p className="pElementHome">{post.username} @{post.username}</p>
-                            {post.user_id === currentUser.id &&
-                                <Ellipsis post={post}/>}
+                            <div className="usernameAtUsernameDiv">
+                                <p className="pElementHomePostUsername">{post.username}</p>
+                                <span className="pElementAtUserName">@{post.username}</span>
+                            </div>
+
+                            {post.user_id === currentUser.id && <Ellipsis post={post}/>}
 
                         </div>
                         <div>
@@ -86,7 +90,7 @@ function SpecificPost(){
                 </div>
                 <div className="formProfilePicPostPage">
                     <div className="imageAndFormPostPage">
-                        <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+                        <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
 
                         <form onSubmit={handleSubmit}>
                             <div className='postErrors'>
@@ -98,7 +102,7 @@ function SpecificPost(){
                                 <input
                                 name="tweet"
                                 className="inputHomePage"
-                                placeholder="What's happening?"
+                                placeholder="Jot your reply"
                                 onChange={(e)=> setComment(e.target.value)}
                                 value={comment}
                                 ></input>
@@ -120,7 +124,6 @@ function SpecificPost(){
 
 
                 </div>
-                <div className="homeFeedHiddenScroll">
                         {comments && comments.map((comment, i) => (
                             <div className='overAllTweetDiv' key={i}>
 
@@ -131,7 +134,10 @@ function SpecificPost(){
                                     </div>
                                     <div className="rightSideOfTweetHome">
                                         <div className="tweetUsernameEditDeleteDiv">
-                                            <p className="pElementHome">{comment.username} @{comment.username}</p>
+                                            <div className="usernameAtUsernameDiv">
+                                                <p className="pElementHomePostUsername">{comment.username}</p>
+                                                <span className="pElementAtUserName">@{comment.username}</span>
+                                            </div>
 
                                             {comment.user_id === currentUser.id && <Ellipsis post={comment}/>}
 

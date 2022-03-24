@@ -9,11 +9,18 @@ const LogoutButton = ({setShowModal}) => {
   };
 
   return (
-    <>
+    <div className='logoutModalExact'>
     <h2>Log out of Jotter?</h2>
-      <button onClick={onLogout}>Log out</button>
-      <button onClick={() => setShowModal(false)}>Cancel</button>
-    </>
+    <div className='centerDivForLogOutModal'>
+      <span className='pElementAtUserNameFix'>You can always log back in at any time. Come back soon!</span>
+      <div>
+        <button className='logoutButtonModal' onClick={onLogout}>Log out</button>
+      </div>
+      <div>
+        <button className='logoutModalCancel' onClick={() => setShowModal(false)}>Cancel</button>
+      </div>
+      </div>
+    </div>
   )
 };
 

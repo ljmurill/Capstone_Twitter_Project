@@ -71,76 +71,80 @@ function HomeFeed(){
             <NavBar/>
 
             <div className="border">
-                <div className="topOfHomePage">
-                    <div>
+                {/* <div className="topOfHomePage"> */}
+                    <div className="HomeTitleHomePage">
                         <h2>Home</h2>
                     </div>
-                    <div className="formProfilePicHomePage">
-                        <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
-                        <div className="formAndButtonDiv">
-                        <form>
-                            <div className='postErrors'>
-                                {errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
-                                    ))}
-                            </div>
-                            <div>
-                                <input
-                                className="inputHomePage"
-                                name="tweet"
-                                placeholder="What's happening?"
-                                onChange={(e)=> setTweet(e.target.value)}
-                                value={tweet}
-                                ></input>
-                            </div>
-                            <div>
-                                <input
-                                name="tweet"
-                                className="inputHomePage"
-                                placeholder="Image (optional)"
-                                onChange={(e)=> setImage(e.target.value)}
-                                value={image}
-                                ></input>
-                            </div>
-
-                        </form>
-                        <div className="buttonHomePageDiv">
-                            <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Jot</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="homeFeedHiddenScroll">
-                    {posts && Object.values(posts).reverse().map((post, i) => (
-                        <div className='overAllTweetDiv' key={i}>
-
-                            <>
-                                <div className='borderTopPost' >
-                                    <div>
-                                        <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
-                                    </div>
-                                    <div className="rightSideOfTweetHome">
-                                        <div className="tweetUsernameEditDeleteDiv">
-                                            <p className="pElementHome">{post.username} @{post.username}</p>
-
-                                            {post.user_id === currentUser.id && <Ellipsis post={post}/>}
-
-                                        </div>
-                                        <div onClick={(e) => handleClick(e, post.id)}>
-                                            <p className="pElementHome">{post.tweet}</p>
-                                            {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
+                    <div className="homeFeedHiddenScroll">
+                        <div className="formProfilePicHomePage">
+                            <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+                            <div className="formAndButtonDiv">
+                                    <form className="formhomeWithInputsAndErrors">
+                                        <div className='postErrors'>
+                                            {errors.map((error, ind) => (
+                                                <div key={ind}>{error}</div>
+                                                ))}
                                         </div>
                                         <div>
-                                            <CreateCommentSetUp post={post}/>
-                                            {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
-                                            {/* <Likes post={post}/> */}
+                                            <input
+                                            className="inputHomePage"
+                                            name="tweet"
+                                            placeholder="What's happening?"
+                                            onChange={(e)=> setTweet(e.target.value)}
+                                            value={tweet}
+                                            ></input>
+                                        </div>
+                                        <div>
+                                            <input
+                                            name="tweet"
+                                            className="inputHomePage"
+                                            placeholder="Image (optional)"
+                                            onChange={(e)=> setImage(e.target.value)}
+                                            value={image}
+                                            ></input>
+                                        </div>
+                                    </form>
+                                    <div className="buttonHomePageDiv">
+                                        <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Jot</button>
+                                    </div>
+                            </div>
+                        </div>
+                        {posts && Object.values(posts).reverse().map((post, i) => (
+                            <div className='overAllTweetDiv' key={i}>
+
+                                <>
+                                    <div className='borderTopPost' >
+                                        <div>
+                                            <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                                        </div>
+                                        <div className="rightSideOfTweetHome">
+                                            <div className="tweetUsernameEditDeleteDiv">
+                                                <div className="usernameAtUsernameDiv">
+                                                    <p className="pElementHomePostUsername">{post.username}</p>
+                                                    <span className="pElementAtUserName">@{post.username}</span>
+                                                </div>
+
+                                                {post.user_id === currentUser.id && <Ellipsis post={post}/>}
+
+                                            </div>
+                                            <div onClick={(e) => handleClick(e, post.id)}>
+                                                <p className="pElementHome">{post.tweet}</p>
+                                                {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
+                                            </div>
+                                            <div className="CommentIconAndNumberSpace">
+                                                <CreateCommentSetUp post={post}/>
+                                                <div>
+                                                    {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
+                                                </div>
+                                            </div>
+                                                {/* <Likes post={post}/> */}
                                         </div>
                                     </div>
-                                </div>
-                            </>
-                        </div>
-                    ))}
-                </div>
+                                </>
+                            </div>
+                        ))}
+                    </div>
+                {/* </div> */}
 
             </div>
         </div>

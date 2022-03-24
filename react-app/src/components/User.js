@@ -57,6 +57,7 @@ function User() {
     return null;
   }
 
+
   const handleClick = (e, postId) => {
     e.preventDefault()
     history.push(`/posts/${postId}`)
@@ -82,31 +83,41 @@ function User() {
       <div className="homeFeedLayout">
         <NavBar />
         <div className="border">
-          <div>
-            <h1 className='userNameProfilePage'>{user.username}</h1>
+
+          <h1 className='userNameProfilePage'>{user.username}</h1>
           {/* <div>{Object.values(total).length > 0 ? Object.values(total).length: ''} Jots</div> */}
-          <div>{total.length > 0 ? total.length: ''} Jots</div>
-          </div>
+          <div className='numberOfJotsProfilePage'>{total.length > 0 ? total.length: 0} Jots</div>
+
 
           <div className="homeFeedHiddenScroll">
             <div className='parent'>
               <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground} onError={handleError}/>
-              <img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
+              <div className='FollowButtonOnProfilePage'>
+                {follow.current[userId] && (+userId !== currentUser.id) && <button className='StyleFollowButtonOnProfilePage' onClick={handleUnFollow}>Unfollow</button>}
+                {!follow.current[userId]  && (+userId !== currentUser.id) && <button className='StyleFollowButtonOnProfilePage' onClick={handleFollow}>Follow</button>}
+              </div>
+              {currentUser.id === +userId ?
+                <img className='profilePicMainYourAccount' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
+                :<img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
+              }
             </div>
             <div className='userInformation'>
-              <div>
-                <div>{user.username}</div>
-                <div>@{user.username}</div>
-                <FontAwesomeIcon icon="fa-solid fa-calendar-days" /><span>Joined {user.created_at}</span>
                 <div>
-                  {following} following
-                  {followers} followers
+                  <h2 className='usernameOnProfilePageMiddleSection'>{user.username}</h2>
+                  <div className='pElementAtUserName'>@{user.username}</div>
                 </div>
-              </div>
-              <div>
-                {follow.current[userId] && (+userId !== currentUser.id) && <button onClick={handleUnFollow}>Unfollow</button>}
-                {!follow.current[userId]  && (+userId !== currentUser.id) && <button onClick={handleFollow}>Follow</button>}
-              </div>
+                <div className='UserCreatedOnProfilePage'>
+                <FontAwesomeIcon icon="fa-solid fa-calendar-days" /><span>Joined {user.created_at}</span>
+                </div>
+                <div className='followersFollowingTrack'>
+                  <div>
+                    <span className='BoldNumber'>{following}</span> <span className='pElementAtUserName'>Following</span>
+                  </div>
+                  <div>
+                    <span className='BoldNumber'>{followers}</span> <span className='pElementAtUserName'>Followers</span>
+                  </div>
+                </div>
+
 
 
             </div>
@@ -115,14 +126,17 @@ function User() {
             {total && total.map((post, i) => (
 
               <div className='overAllTweetDiv' key={i}>
-                <>
+
                   <div className='borderTopPost' >
                       <div>
                           <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                       </div>
                       <div className="rightSideOfTweetHome">
                           <div className="tweetUsernameEditDeleteDiv">
-                              <p className="pElementHome">{post.username} @{post.username}</p>
+                            <div className="usernameAtUsernameDiv">
+                                <p className="pElementHomePostUsername">{post.username}</p>
+                                <span className="pElementAtUserName">@{post.username}</span>
+                            </div>
 
                               {post.user_id === currentUser.id && <Ellipsis post={post}/>}
 
@@ -131,15 +145,17 @@ function User() {
                               <p className="pElementHome">{post.tweet}</p>
                               {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                           </div>
-                            <div>
-                                <CreateCommentSetUp post={post}/>
-                                {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
-                            </div>
+                          <div className="CommentIconAndNumberSpace">
+                              <CreateCommentSetUp post={post}/>
+                              <div>
+                                  {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
+                              </div>
+                          </div>
                       </div>
                   </div>
-              </>
-          </div>
-          ))}
+
+              </div>
+            ))}
           </div>
         </div>
       </div>

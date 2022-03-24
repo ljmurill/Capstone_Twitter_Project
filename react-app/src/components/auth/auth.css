@@ -74,3 +74,49 @@ body.login{
     margin-top: 15px;
     margin-left: 10px;
 }
+
+/* *************** LogOut ******************* */
+
+.logoutButtonModal{
+    border: none;
+    border-radius: 9999px;
+    background-color: white;
+    color: black;
+    width: 250px;
+    height: 35px;
+}
+
+.logoutModalCancel{
+    border: 1px solid white;
+    border-radius: 9999px;
+    background-color: black;
+    color: white;
+    width: 250px;
+    height: 35px;
+}
+
+.logoutModalExact{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    box-sizing: border-box;
+
+}
+
+.pElementAtUserNameFix{
+    color: gray;
+    overflow-wrap: break-word;
+    /* word-break: break-all; */
+    width: 250px;
+}
+
+.centerDivForLogOutModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 15px;
+}

@@ -72,11 +72,15 @@
 .homeFeedLayout{
     display: flex;
     justify-content: center;
+
 }
 
 .border{
-    border: 1px solid gray;
-    width: 600px;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    width: 650px;
+
 }
 .borderTopPost{
     display: flex;
@@ -86,7 +90,7 @@
 }
 .homeFeedHiddenScroll{
     overflow-y: scroll;
-    max-height: 750px;
+    height: 850px;
 }
 
 .homeFeedHiddenScroll::-webkit-scrollbar{
@@ -144,7 +148,8 @@
     align-items: center;
     border-radius: 9999px;
     width: 250px;
-    padding: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
 }
 
 .allLogoutSection:hover{
@@ -153,6 +158,7 @@
 .leftLogOutSection{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 /* ****************** User ****************** */
@@ -162,17 +168,27 @@
     height: 130px;
     border: 2px black solid;
     position: relative;
-    bottom: 67px;
-    left: 15px
+    bottom: 105px;
+    left: 15px;
 }
 
+.profilePicMainYourAccount{
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    border: 2px black solid;
+    position: relative;
+    bottom: 70px;
+    left: 15px;
+}
 .userNameProfilePage{
     margin: 0;
+    margin-left: 15px;
 }
 
 .backgroundImageProfile{
     height: 200px;
-    width: 600px;
+    width: 100%;
     position: relative;
 }
 
@@ -181,6 +197,29 @@
     height: 275px;
 }
 
+.numberOfJotsProfilePage{
+    color: gray;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.BoldNumber{
+    font-weight: bold;
+}
+.FollowButtonOnProfilePage{
+    position: relative;
+    left: 555px;
+    top: 15px;
+
+}
+
+.StyleFollowButtonOnProfilePage{
+    border: none;
+    background-color: white;
+    border-radius: 9999px;
+    width: 80px;
+    height: 35px;
+}
 /* ****************** PostPage ****************** */
 
 .imageAndFormPostPage{
@@ -198,9 +237,61 @@
 
 .userInformation{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
 }
 
 .heartColor{
     color: red;
+}
+
+.usernameOnProfilePageMiddleSection{
+    margin:0;
+}
+
+.UserCreatedOnProfilePage{
+    color: gray;
+    display: flex;
+    gap:5px;
+}
+.followersFollowingTrack{
+    display: flex;
+    gap:10px;
+}
+
+.borderTopPostSpecificPost{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px 15px 0 15px;
+}
+
+/* ****************** jotModal ****************** */
+.xmarkOnJotModal{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+/* *************** CommentModal ****************** */
+.commentModalTweetSize{
+    margin: 15px 0;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.getWidthOfTextCommentModal{
+    max-width: 250px;
+}
+
+.ReplyingMessageCommentModal{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.spanUsernameCommentModal{
+    color: rgb(29, 155, 240);
 }
