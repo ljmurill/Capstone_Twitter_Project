@@ -40,6 +40,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                     setImageLoading(false)
                     setImage(null)
                     setErrors([])
+                    dispatch(getComments(post.id))
                 }
 
 
