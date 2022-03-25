@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { updatePost, updateComment } from "../../store/post";
 import { getComments } from "../../store/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getComments } from "../../store/post";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
