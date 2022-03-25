@@ -66,11 +66,11 @@ export const getFeedPosts = () => async(dispatch) => {
     return response;
 }
 
-export const createJot = (newPost) => async(dispatch) => {
+export const createJot = (formData) => async(dispatch) => {
     const response = await fetch('/posts', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newPost)
+        // headers: {'Content-Type': 'application/json'},
+        body: formData
     })
 
     if (response.ok){
@@ -88,11 +88,10 @@ export const createJot = (newPost) => async(dispatch) => {
     }
 }
 
-export const updatePost = (postId, newPost) => async(dispatch) => {
+export const updatePost = (postId, formData) => async(dispatch) => {
     const response = await fetch(`/posts/${postId}/update`, {
         method:'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newPost)
+        body: formData
     })
     if (response.ok){
         const post = await response.json();
@@ -160,11 +159,10 @@ export const getComments = (postId) => async(dispatch) => {
     return response;
 }
 
-export const createComment = (newComment) =>  async(dispatch) => {
+export const createComment = (formData) =>  async(dispatch) => {
     const response = await fetch(`/comments`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newComment)
+        body: formData
     })
 
     if (response.ok){
@@ -194,11 +192,10 @@ export const deleteComment = (commentId) =>  async(dispatch) => {
     }
 }
 
-export const updateComment = (commentId, newComment) => async(dispatch) => {
+export const updateComment = (commentId, formData) => async(dispatch) => {
     const response = await fetch(`/comments/${commentId}/updates`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newComment)
+        body: JSON.stringify(formData)
     })
 
     if(response.ok){

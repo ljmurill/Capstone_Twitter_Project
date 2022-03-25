@@ -2,12 +2,15 @@ import React,{useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllComments } from "../../store/comment";
 import { createComment, getComments } from "../../store/post";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
 function CreateComment({post, setShowModal}){
     const [comment, setComment] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imageLoading, setImageLoading] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch();
@@ -19,22 +22,33 @@ function CreateComment({post, setShowModal}){
     }, [dispatch, post.id])
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const newComment = {
-            comment,
-            image,
-            user_id: currentUser.id,
-            post_id: post.id,
-            username: currentUser.username,
-            profile_pic: currentUser.profile_pic
-        }
+        const formData = new FormData();
+        formData.append('comment', comment)
+        formData.append('image', image)
+        formData.append('post_id', post.id)
+        formData.append('user_id', currentUser.id)
+        formData.append('username', currentUser.username)
 
-        const result = await dispatch(createComment(newComment))
+        setImageLoading(true);
+        // const newComment = {
+        //     comment,
+        //     image,
+        //     user_id: currentUser.id,
+        //     post_id: post.id,
+        //     username: currentUser.username,
+        //     profile_pic: currentUser.profile_pic
+        // }
+
+        const result = await dispatch(createComment(formData))
 
         if (result){
             setErrors(result)
+            setImageLoading(false)
         }else{
+            setImageLoading(false)
+            setImagePreview(null)
             setComment('')
-            setImage('')
+            setImage(null)
             setErrors([])
             setShowModal(false)
             await dispatch(getAllComments())
@@ -46,6 +60,17 @@ function CreateComment({post, setShowModal}){
         e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
       }
 
+    const updateImage = (e) => {
+        if (e.target.files && e.target.files.length > 0){
+            const reader = new FileReader();
+            const file = e.target.files[0];
+            setImage(file);
+            reader.readAsDataURL(file)
+            reader.addEventListener('load', () => {
+                setImagePreview(reader.result)
+            })
+        }
+    }
 
     return(
         <>
@@ -92,46 +117,34 @@ function CreateComment({post, setShowModal}){
                             </div>
                             <div>
                                 <input
+                                id='modalCommentChooseFileInput'
+                                type="file"
+                                accept="image/*"
                                 name="tweet"
-                                className="inputHomePage"
-                                placeholder="Image Url (optional)"
-                                onChange={(e)=> setImage(e.target.value)}
-                                value={image}
+                                // className="inputHomePage"
+                                // placeholder="Image Url (optional)"
+                                onChange={updateImage}
+                                hidden='hidden'
                                 ></input>
+                                {imagePreview &&
+                                <>
+                                    <div className="xOnImagePreview" onClick={() => {
+                                        setImage(null)
+                                        setImagePreview(null)
+                                    }}>
+                                    <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                                    </div>
+                                    <img className='imagePreview' src={imagePreview}/>
+                                </>}
+
                             </div>
                         </form>
                         <div className="buttonHomePageDiv">
+                        <label htmlFor='modalCommentChooseFileInput'><FontAwesomeIcon className="colorOfImageIcon" icon="fa-solid fa-image"/></label>
                             <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Reply</button>
                         </div>
                 </div>
             </div>
-            {/* <div>
-                <img className='profilePic' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
-                <form onSubmit={handleSubmit}>
-                    <div className='postErrors'>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                            ))}
-                    </div>
-                    <div>
-                        <input
-                        name="tweet"
-                        placeholder="What's happening?"
-                        onChange={(e)=> setComment(e.target.value)}
-                        value={comment}
-                        ></input>
-                    </div>
-                    <div>
-                        <input
-                        name="tweet"
-                        placeholder="Image (optional)"
-                        onChange={(e)=> setImage(e.target.value)}
-                        value={image}
-                        ></input>
-                    </div>
-                    <button type="submit">Reply</button>
-                </form>
-            </div> */}
 
         </>
     )
