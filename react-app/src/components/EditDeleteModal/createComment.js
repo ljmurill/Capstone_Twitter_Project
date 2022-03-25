@@ -69,6 +69,7 @@ function CreateComment({post, setShowModal}){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
+            reader.close()
         }
     }
 

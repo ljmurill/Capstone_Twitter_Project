@@ -79,6 +79,8 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
+
+            reader.close()
         }
     }
 

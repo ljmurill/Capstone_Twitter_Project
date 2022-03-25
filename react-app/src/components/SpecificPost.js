@@ -78,6 +78,7 @@ function SpecificPost(){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
+            reader.close()
         }
     }
 
