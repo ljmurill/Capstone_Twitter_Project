@@ -31,7 +31,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                 }else{
                     setShowModal(false);
                     setShowModalEllipsis(false);
-                    dispatch(getComments(post.id))
+                    dispatch(getComments(post.post_id))
                 }
 
 
