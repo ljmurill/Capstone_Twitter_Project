@@ -195,7 +195,7 @@ export const deleteComment = (commentId) =>  async(dispatch) => {
 export const updateComment = (commentId, formData) => async(dispatch) => {
     const response = await fetch(`/comments/${commentId}/updates`, {
         method: 'POST',
-        body: JSON.stringify(formData)
+        body: formData
     })
 
     if(response.ok){

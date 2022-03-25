@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { updatePost, updateComment } from "../../store/post";
 import { getComments } from "../../store/post";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getComments } from "../../store/post";
+
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -33,7 +33,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                 if(result){
                     setErrors(result);
                     setImageLoading(false)
-                    setImagePreview(null)
+
                 }else{
                     setImagePreview(null)
                     setShowModal(false);
@@ -41,7 +41,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                     setImageLoading(false)
                     setImage(null)
                     setErrors([])
-                    dispatch(getComments(post.id))
+                    dispatch(getComments(post.post_id))
                 }
 
 
@@ -56,7 +56,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                 if(result){
                     setErrors(result);
                     setImageLoading(false)
-                    setImagePreview(null)
+
                 }else{
                     setImagePreview(null)
                     setShowModal(false);
