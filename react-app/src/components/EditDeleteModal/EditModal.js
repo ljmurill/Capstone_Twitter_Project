@@ -36,12 +36,12 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
 
                 }else{
                     setImagePreview(null)
-                    setShowModal(false);
-                    setShowModalEllipsis(false);
                     setImageLoading(false)
                     setImage(null)
                     setErrors([])
                     dispatch(getComments(post.post_id))
+                    setShowModal(false);
+                    setShowModalEllipsis(false);
                 }
 
 
@@ -59,12 +59,12 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
 
                 }else{
                     setImagePreview(null)
-                    setShowModal(false);
-                    setShowModalEllipsis(false);
                     setImageLoading(false)
                     setImage(null)
                     setErrors([])
                     dispatch(getComments(post.id))
+                    setShowModal(false);
+                    setShowModalEllipsis(false);
                 }
         }
     }
@@ -80,7 +80,6 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                 setImagePreview(reader.result)
             })
 
-            reader.close()
         }
     }
 
@@ -94,7 +93,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
                 <div className="formProfilePicHomePage">
                     <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                     <div className="formAndButtonDiv">
-                            <form className="formhomeWithInputsAndErrors">
+                            <form className="formhomeWithInputsAndErrors" onSubmit={handleEdit}>
                                 <div className='postErrors'>
                                     {errors.map((error, ind) => (
                                         <div key={ind}>{error}</div>
@@ -156,7 +155,7 @@ function EditModal({post, setShowModal, setShowModalEllipsis}){
             <div className="formProfilePicHomePage">
                 <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
                 <div className="formAndButtonDiv">
-                        <form className="formhomeWithInputsAndErrors">
+                        <form className="formhomeWithInputsAndErrors" onSubmit={handleEdit}>
                             <div className='postErrors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>

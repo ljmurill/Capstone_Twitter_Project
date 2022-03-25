@@ -60,7 +60,7 @@ function JotModal({user, setShowModal}){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-            reader.close()
+      
         }
     }
 

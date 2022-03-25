@@ -21,7 +21,7 @@ function UsersList() {
     e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
   }
 
-  const userComponents = users.map((user) => {
+  const userComponents = users.map((user, i) => {
     return (
       <>
         {currentUser.id !== user.id &&  <NavLink className='userListNavLinks' to={`/users/${user.id}`}>

@@ -89,7 +89,7 @@ function HomeFeed(){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-            reader.close()
+      
         }
     }
 

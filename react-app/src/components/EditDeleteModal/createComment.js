@@ -20,6 +20,7 @@ function CreateComment({post, setShowModal}){
     useEffect(() => {
         dispatch(getComments(post.id))
     }, [dispatch, post.id])
+
     const handleSubmit = async(e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -69,7 +70,7 @@ function CreateComment({post, setShowModal}){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-            reader.close()
+    
         }
     }
 
