@@ -23,14 +23,14 @@ function UsersList() {
 
   const userComponents = users.map((user, i) => {
     return (
-      <>
+      <div key={i}>
         {currentUser.id !== user.id &&  <NavLink className='userListNavLinks' to={`/users/${user.id}`}>
-          <div key={user.id} className='userListSection'>
+          <div className='userListSection'>
             <img className='profilePicTopHome' src={user.profile_pic ? user.profile_pic: defaultProfilePic} onError={handleError}/>
             <span>{user.username}</span>
           </div>
           </NavLink>}
-      </>
+      </div>
 
     );
   });
