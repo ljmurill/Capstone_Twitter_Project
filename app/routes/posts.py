@@ -119,7 +119,7 @@ def post():
 @post_routes.route('/<int:id>', methods=['DELETE'])
 def delete_post(id):
     specific_post = Post.query.get(id)
-
+    ##delete from bucket add if statement
     db.session.delete(specific_post)
     db.session.commit()
     return specific_post.to_dict()

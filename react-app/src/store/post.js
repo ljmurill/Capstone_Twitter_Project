@@ -261,7 +261,7 @@ export default function postReducer(state= initialState, action){
             newState[action.comment.post_id].comments = [{...action.comment}, ...newState[action.comment.post_id].comments];
             return newState;
         case DELETE_COMMENT:
-            newState ={...state};
+            newState = {...state};
             newState[action.comment.post_id].comments.forEach((comment, i) =>{
                 if (comment === action.comment) newState[action.comment.post_id].comments.splice(i, 1)
             });
