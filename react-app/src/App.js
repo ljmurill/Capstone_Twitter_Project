@@ -12,7 +12,7 @@ import Splash from './components/Splash';
 import HomeFeed from './components/Home/Home';
 import SpecificPost from './components/SpecificPost';
 import { getFeedPosts, totalPosts } from './store/post';
-import {getAllComments} from './store/comment';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
