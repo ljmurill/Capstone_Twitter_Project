@@ -13,6 +13,7 @@ function EditProfileModal({user, setShowModal, setUser}){
     const [profile_pic, setProfilePic] = useState(user.profile_pic ? user.profile_pic : defaultProfilePic)
     const [profilePicPreview, setProfilePicPreview] = useState(null);
     const [backgroundPreview, setBackgroundPreview] = useState(null);
+    const [disabled, setDisabled] = useState(true);
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
@@ -53,7 +54,7 @@ function EditProfileModal({user, setShowModal, setUser}){
             reader.addEventListener('load', () => {
                 setBackgroundPreview(reader.result)
             })
-
+            setDisabled(false)
         }
     }
     const updateProfilePic = (e) => {
@@ -65,7 +66,7 @@ function EditProfileModal({user, setShowModal, setUser}){
             reader.addEventListener('load', () => {
                 setProfilePicPreview(reader.result)
             })
-
+            setDisabled(false)
         }
     }
 
@@ -74,7 +75,7 @@ function EditProfileModal({user, setShowModal, setUser}){
         <div>
             <div className="headerForEditProfile">
                 <h3>Edit Profile</h3>
-                <button className='StyleFollowButtonOnProfilePage' onClick={handleUpdate}>Save</button>
+                <button className='StyleFollowButtonOnProfilePage' onClick={handleUpdate} disabled={disabled}>Save</button>
             </div>
             <form>
                 <div className='postErrors'>
@@ -102,7 +103,17 @@ function EditProfileModal({user, setShowModal, setUser}){
             <div className="parentEditProfile">
                 <img className='backgroundImageEditProfile' src={backgroundPreview ? backgroundPreview : background_image}/>
                 <img className='profilePicEditProfile' src={profilePicPreview ? profilePicPreview : profile_pic}/>
+                <div className="XBackgroundImagePreview" onClick={() => {
+                    setBackgroundPreview(null)
+                    setBackgroundImage(defaultBackground)
+                    setDisabled(false)
+                }}> <FontAwesomeIcon icon="fa-solid fa-xmark" /></div>
                 <label htmlFor='BackgroundImageInput' className="BackgroundImagePreview"><FontAwesomeIcon className="colorOfImageIconEditProfile" icon="fa-solid fa-camera"/></label>
+                <div className="XProfilePicturePreview" onClick={() => {
+                    setProfilePicPreview(null)
+                    setProfilePic(defaultProfilePic)
+                    setDisabled(false)
+                }}> <FontAwesomeIcon icon="fa-solid fa-xmark" /></div>
                 <label htmlFor='ProfilePicInput' className="ProfilePicturePreview"><FontAwesomeIcon className="colorOfImageIconEditProfile" icon="fa-solid fa-camera"/></label>
             </div>
         </div>

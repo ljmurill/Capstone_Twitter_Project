@@ -55,8 +55,16 @@ def account_images(id):
         user = User.query.get(id)
 
         if "profile_pic" not in request.files and "background_image" not in request.files:
-            user.profile_pic= None
-            user.background_image = None
+    
+            if user.background_image == request.form['background_image']:
+                user.background_image = user.background_image
+            else:
+                user.background_image = None
+            if user.profile_pic == request.form['profile_pic']:
+                user.profile_pic = user.profile_pic
+            else:
+                user.profile_pic = None
+
 
         elif "profile_pic" in request.files and "background_image" not in request.files:
             profile_pic = request.files['profile_pic']
@@ -70,7 +78,10 @@ def account_images(id):
             if "url" not in upload:
                 return upload, 400
 
-            user.background_image = user.background_image
+            if user.background_image == request.form['background_image']:
+                user.background_image = user.background_image
+            else:
+                user.background_image = None
             user.profile_pic = upload["url"]
 
         elif "profile_pic" not in request.files and "background_image" in request.files:
@@ -86,7 +97,10 @@ def account_images(id):
 
             if "url" not in upload:
                 return upload, 400
-            user.profile_pic = user.profile_pic
+            if user.profile_pic == request.form['profile_pic']:
+                user.profile_pic = user.profile_pic
+            else:
+                user.profile_pic = None
             user.background_image = upload["url"]
         else:
             background_image = request.files['background_image']
@@ -99,6 +113,7 @@ def account_images(id):
 
             if "url" not in upload1:
                 return upload1, 400
+
             profile_pic = request.files['profile_pic']
             if not allowed_file(profile_pic.filename):
                 return {"errors": "file type not permitted"}, 400

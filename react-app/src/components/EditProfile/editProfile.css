@@ -5,7 +5,7 @@
     border: 2px black solid;
     position: relative;
     bottom: 75px;
-    right: -13px;
+    right: -15px;
 }
 
 .backgroundImageEditProfile{
@@ -45,8 +45,8 @@
 
 .BackgroundImagePreview{
     position: relative;
-    top: -256px;
-    left: 276px;
+    top: -300px;
+    left: 250px;
     background-color: rgba(53, 52, 52, 0.5);
     width: 45px;
     height: 45px;
@@ -58,8 +58,8 @@
 
 .ProfilePicturePreview{
     position: relative;
-    top: -205px;
-    left: 64px;
+    top: -285px;
+    left: 45px;
     background-color: rgba(53, 52, 52, 0.5);
     width: 35px;
     height: 35px;
@@ -81,4 +81,41 @@
 
 .colorOfImageIconEditProfile{
     color: white;
+}
+
+
+.XProfilePicturePreview{
+    position: relative;
+    top: -250px;
+    left: 84px;
+    background-color: rgba(53, 52, 52, 0.5);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.XProfilePicturePreview:hover{
+    background-color: rgba(53, 52, 52, 0.8)
+
+}
+
+.XBackgroundImagePreview{
+    position: relative;
+    top: -255px;
+    left: 300px;
+    background-color: rgba(53, 52, 52, 0.5);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.XBackgroundImagePreview:hover{
+    background-color: rgba(53, 52, 52, 0.8)
+
 }
