@@ -111,7 +111,7 @@ const SignUpForm = () => {
 
           ></input>
         </div>
-        <div>
+        {/* <div>
 
           <input
           className='loginFormInput'
@@ -136,7 +136,7 @@ const SignUpForm = () => {
           >
           </input>
 
-        </div>
+        </div> */}
         <div className='ButtonsOnLoginFormDiv'>
         <button className='LoginPageButton' type='submit'>Sign Up</button>
         </div>

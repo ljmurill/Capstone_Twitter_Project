@@ -8,6 +8,7 @@ import Ellipsis from './Home/Ellipsis';
 import CreateCommentSetUp from './EditDeleteModal/createCommentSetUp';
 import NavBar from './NavBar';
 import './splashHomeNav.css';
+import EditProfileSetUp from './EditProfile/EditProfileSetUp';
 import { currentUserFollow, followUser, getAllFollowers, getAllFollowing, unfollowUser } from '../store/follows';
 const defaultBackground = 'https://camo.mybb.com/f47a68f9fd1d3f39f1aa9790fe74520f256d2142/687474703a2f2f692e696d6775722e636f6d2f64485850582e706e67'
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -93,11 +94,12 @@ function User() {
             <div className='parent'>
               <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground} onError={handleError}/>
               <div className='FollowButtonOnProfilePage'>
+                {currentUser.id === +userId && <EditProfileSetUp user={user} setUser={setUser}/>}
                 {follow.current[userId] && (+userId !== currentUser.id) && <button className='StyleFollowButtonOnProfilePage' onClick={handleUnFollow}>Unfollow</button>}
                 {!follow.current[userId]  && (+userId !== currentUser.id) && <button className='StyleFollowButtonOnProfilePage' onClick={handleFollow}>Follow</button>}
               </div>
               {currentUser.id === +userId ?
-                <img className='profilePicMainYourAccount' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
+                <img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
                 :<img className='profilePicMain' src={user.profile_pic ? user.profile_pic : defaultProfilePic} onError={handleError}/>
               }
             </div>

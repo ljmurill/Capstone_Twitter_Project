@@ -225,6 +225,7 @@
 .imageAndFormPostPage{
     display: flex;
     gap: 10px;
+    width:100%;
 }
 .formProfilePicPostPage{
     display: flex;
@@ -235,6 +236,16 @@
     padding-top: 10px;
 }
 
+
+.buttonPostPageDivNoBorder{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+.postPageFormInputFileButton{
+    width: 100%;
+    padding-right: 15px;
+}
 .userInformation{
     display: flex;
     flex-direction: column;
@@ -269,8 +280,9 @@
 
 /* ****************** jotModal ****************** */
 .xmarkOnJotModal{
-    margin-top: 10px;
-    margin-left: 10px;
+    position: relative;
+    top: 10px;
+    right: -11px;
 }
 
 

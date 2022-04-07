@@ -1,0 +1,121 @@
+.profilePicEditProfile{
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    border: 2px black solid;
+    position: relative;
+    bottom: 75px;
+    right: -15px;
+}
+
+.backgroundImageEditProfile{
+    height: 200px;
+    width: 600px;
+    position: relative;
+}
+
+
+.parentEditProfile {
+    position: relative;
+    height: 275px;
+    width: 600px;
+}
+
+.EditProfileButton{
+    width: 100px;
+    height: 35px;
+    border-radius: 9999px;
+    border: 1px white solid;
+    color: white;
+    background-color: black;
+    left: -19px;
+    position: relative;
+}
+
+.EditProfileButton:hover{
+    background-color: rgba(114, 113, 113, 0.39)
+}
+
+.headerForEditProfile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.BackgroundImagePreview{
+    position: relative;
+    top: -300px;
+    left: 250px;
+    background-color: rgba(53, 52, 52, 0.5);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProfilePicturePreview{
+    position: relative;
+    top: -285px;
+    left: 45px;
+    background-color: rgba(53, 52, 52, 0.5);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProfilePicturePreview:hover{
+    background-color: rgba(53, 52, 52, 0.8)
+
+}
+
+.BackgroundImagePreview:hover{
+    background-color: rgba(53, 52, 52, 0.8)
+
+}
+
+.colorOfImageIconEditProfile{
+    color: white;
+}
+
+
+.XProfilePicturePreview{
+    position: relative;
+    top: -250px;
+    left: 84px;
+    background-color: rgba(53, 52, 52, 0.5);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.XProfilePicturePreview:hover{
+    background-color: rgba(53, 52, 52, 0.8)
+
+}
+
+.XBackgroundImagePreview{
+    position: relative;
+    top: -255px;
+    left: 300px;
+    background-color: rgba(53, 52, 52, 0.5);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.XBackgroundImagePreview:hover{
+    background-color: rgba(53, 52, 52, 0.8)
+
+}

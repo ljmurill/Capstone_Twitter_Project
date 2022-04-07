@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import EditModalSetUp from "./EditDeleteModal/EditModalSetUp";
-import DeleteModalSetUp from "./EditDeleteModal/DeleteModalSetup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getComments, createComment, getFeedPosts, profilePostsComments, totalPosts } from "../store/post";
 import NavBar from "./NavBar";
 import Ellipsis from "./Home/Ellipsis";
@@ -14,7 +13,9 @@ const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twit
 
 function SpecificPost(){
     const [comment, setComment] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
     const [errors, setErrors] = useState([]);
     const {postId} = useParams();
 
@@ -34,23 +35,32 @@ function SpecificPost(){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('comment', comment)
+        formData.append('image', image)
+        formData.append('user_id', currentUser.id)
+        formData.append('post_id', postId)
+        formData.append('username', currentUser.username)
+        setImageLoading(true);
+        // const newComment = {
+        //     comment,
+        //     image,
+        //     user_id: currentUser.id,
+        //     post_id: postId,
+        //     username: currentUser.username,
+        //     profile_pic: currentUser.profile_pic
+        // }
 
-        const newComment = {
-            comment,
-            image,
-            user_id: currentUser.id,
-            post_id: postId,
-            username: currentUser.username,
-            profile_pic: currentUser.profile_pic
-        }
-
-        const result = await dispatch(createComment(newComment))
+        const result = await dispatch(createComment(formData))
 
         if (result){
             setErrors(result)
+            setImageLoading(false)
         }else{
+            setImagePreview(null)
+            setImageLoading(false)
             setComment('')
-            setImage('')
+            setImage(null)
             setErrors([])
         }
 
@@ -58,6 +68,20 @@ function SpecificPost(){
     const handleError =(e) => {
         e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
     }
+
+    const updateImage = (e) => {
+        if (e.target.files && e.target.files.length > 0){
+            const reader = new FileReader();
+            const file = e.target.files[0];
+            setImage(file);
+            reader.readAsDataURL(file)
+            reader.addEventListener('load', () => {
+                setImagePreview(reader.result)
+            })
+         
+        }
+    }
+
 
     return(
         <div className="homeFeedLayout">
@@ -91,35 +115,52 @@ function SpecificPost(){
                 <div className="formProfilePicPostPage">
                     <div className="imageAndFormPostPage">
                         <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
-
-                        <form onSubmit={handleSubmit}>
-                            <div className='postErrors'>
-                                {errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
-                                    ))}
-                            </div>
-                            <div>
+                        <div className="postPageFormInputFileButton">
+                            <form onSubmit={handleSubmit}>
+                                <div className='postErrors'>
+                                    {errors.map((error, ind) => (
+                                        <div key={ind}>{error}</div>
+                                        ))}
+                                </div>
+                                <div>
+                                    <input
+                                    name="tweet"
+                                    className="inputHomePage"
+                                    placeholder="Jot your reply"
+                                    onChange={(e)=> setComment(e.target.value)}
+                                    value={comment}
+                                    ></input>
+                                </div>
+                                <div>
                                 <input
-                                name="tweet"
-                                className="inputHomePage"
-                                placeholder="Jot your reply"
-                                onChange={(e)=> setComment(e.target.value)}
-                                value={comment}
-                                ></input>
-                            </div>
-                            <div>
-                                <input
-                                name="tweet"
-                                className="inputHomePage"
-                                placeholder="Image Url (optional)"
-                                onChange={(e)=> setImage(e.target.value)}
-                                value={image}
-                                ></input>
-                            </div>
+                                    id='commentChooseFileInput'
+                                    type="file"
+                                    accept="image/*"
+                                    name="tweet"
+                                    // className="inputHomePage"
+                                    // placeholder="Image Url (optional)"
+                                    onChange={updateImage}
+                                    hidden='hidden'
+                                    ></input>
+                                    {imagePreview &&
+                                    <>
+                                        <div className="xOnImagePreview" onClick={() => {
+                                            setImage(null)
+                                            setImagePreview(null)
+                                        }}>
+                                        <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                                        </div>
+                                        <img className='imagePreview' src={imagePreview}/>
+                                    </>}
+                                </div>
 
-                        </form>
+                            </form>
+                            <div className="buttonPostPageDivNoBorder">
+                                <label htmlFor='commentChooseFileInput'><FontAwesomeIcon className="colorOfImageIcon" icon="fa-solid fa-image"/></label>
+                                <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Reply</button>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Reply</button>
 
 
 

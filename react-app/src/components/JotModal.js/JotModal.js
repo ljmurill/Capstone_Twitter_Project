@@ -7,29 +7,40 @@ const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twit
 
 function JotModal({user, setShowModal}){
     const [tweet, setTweet] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [imageLoading, setImageLoading] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch();
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append('tweet', tweet)
+        formData.append('image', image)
+        formData.append('user_id', user.id)
+        formData.append('username', user.username)
 
-        const newPost = {
-            tweet,
-            image,
-            user_id: user.id,
-            username: user.username,
-            profile_pic: user.profile_pic
-        }
+        setImageLoading(true);
+        // const newPost = {
+        //     tweet,
+        //     image,
+        //     user_id: user.id,
+        //     username: user.username,
+        //     profile_pic: user.profile_pic
+        // }
 
-        const result = await dispatch(createJot(newPost))
+        const result = await dispatch(createJot(formData))
 
         if (result){
             setErrors(result)
+            setImageLoading(false)
         }else{
+            setImageLoading(false)
+            setImagePreview(null)
             setTweet('')
-            setImage('')
+            setImage(null)
             setErrors([])
             setShowModal(false)
         }
@@ -39,6 +50,20 @@ function JotModal({user, setShowModal}){
     const handleError =(e) => {
         e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
       }
+
+    const updateImage = (e) => {
+        if (e.target.files && e.target.files.length > 0){
+            const reader = new FileReader();
+            const file = e.target.files[0];
+            setImage(file);
+            reader.readAsDataURL(file)
+            reader.addEventListener('load', () => {
+                setImagePreview(reader.result)
+            })
+      
+        }
+    }
+
 
     return(
         <>
@@ -63,15 +88,30 @@ function JotModal({user, setShowModal}){
                             </div>
                             <div>
                                 <input
+                                id='modalChooseFileInput'
+                                type="file"
+                                accept="image/*"
                                 name="tweet"
-                                className="inputHomePage"
-                                placeholder="Image Url (optional)"
-                                onChange={(e)=> setImage(e.target.value)}
-                                value={image}
+                                // className="inputHomePage"
+                                // placeholder="Image Url (optional)"
+                                onChange={updateImage}
+                                hidden='hidden'
                                 ></input>
+                                {imagePreview &&
+                                <>
+                                    <div className="xOnImagePreview" onClick={() => {
+                                        setImage(null)
+                                        setImagePreview(null)
+                                    }}>
+                                    <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                                    </div>
+                                    <img className='imagePreview' src={imagePreview}/>
+                                </>}
+
                             </div>
                         </form>
                         <div className="buttonHomePageDiv">
+                            <label htmlFor='modalChooseFileInput'><FontAwesomeIcon className="colorOfImageIcon" icon="fa-solid fa-image"/></label>
                             <button type="submit" className="jotButtonOnHomePage" onClick={handleSubmit}>Jot</button>
                         </div>
                 </div>
