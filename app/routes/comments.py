@@ -109,11 +109,14 @@ def update_comment(id):
     if form.validate_on_submit():
         edit_comment = Comment.query.get(id)
         if "image" not in request.files:
+            if edit_comment.image == request.form['image']:
+                edit_comment.image = edit_comment.image
+            else:
+                edit_comment.image = None
 
-            image=None
             comment = request.form['comment']
             edit_comment.comment = comment
-            edit_comment.image = image
+        
         else:
             image = request.files['image']
 
