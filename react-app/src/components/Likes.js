@@ -27,7 +27,7 @@ function Likes({ post }){
 
               })();
         }
-    },[])
+    },[dispatch, post.id])
 
     const handleLike =async()=>{
         if (post.hasOwnProperty('comment')){

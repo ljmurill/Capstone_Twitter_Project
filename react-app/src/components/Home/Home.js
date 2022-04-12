@@ -10,6 +10,7 @@ import { currentUserFollow } from "../../store/follows";
 import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
 import Likes from "../Likes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from 'moment';
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -165,7 +166,8 @@ function HomeFeed(){
                                             <div className="tweetUsernameEditDeleteDiv">
                                                 <div className="usernameAtUsernameDiv">
                                                     <p className="pElementHomePostUsername">{post.username}</p>
-                                                    <span className="pElementAtUserName">@{post.username}</span>
+                                                    <span className="pElementAtUserName">@{post.username} - {moment(post.created_at).fromNow()}</span>
+
                                                 </div>
 
                                                 {post.user_id === currentUser.id && <Ellipsis post={post}/>}

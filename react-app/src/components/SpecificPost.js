@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import Ellipsis from "./Home/Ellipsis";
 import CreateCommentSetUp from "./EditDeleteModal/createCommentSetUp";
 import Likes from "./Likes";
+import moment from "moment";
 
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -98,7 +99,7 @@ function SpecificPost(){
                         <div className="tweetUsernameEditDeleteDiv">
                             <div className="usernameAtUsernameDiv">
                                 <p className="pElementHomePostUsername">{post.username}</p>
-                                <span className="pElementAtUserName">@{post.username}</span>
+                                <span className="pElementAtUserName">@{post.username} - {moment(post.created_at).fromNow()}</span>
                             </div>
 
                             {post.user_id === currentUser.id && <Ellipsis post={post}/>}
@@ -179,7 +180,7 @@ function SpecificPost(){
                                         <div className="tweetUsernameEditDeleteDiv">
                                             <div className="usernameAtUsernameDiv">
                                                 <p className="pElementHomePostUsername">{comment.username}</p>
-                                                <span className="pElementAtUserName">@{comment.username}</span>
+                                                <span className="pElementAtUserName">@{comment.username} - {moment(comment.created_at).fromNow()}</span>
                                             </div>
 
                                             {comment.user_id === currentUser.id && <Ellipsis post={comment}/>}
