@@ -47,7 +47,7 @@ export const commentLike = (commentId) => async(dispatch) => {
 }
 
 export const postDislike = (postId) => async(dispatch) => {
-    const response = await fetch(`likes/${postId}/post`,{
+    const response = await fetch(`/likes/${postId}/post`,{
         method: 'DELETE',
         headers: {'Content-Type':'application/json'},
     })
@@ -58,7 +58,7 @@ export const postDislike = (postId) => async(dispatch) => {
 }
 
 export const commentDislike = (commentId) => async(dispatch) => {
-    const response = await fetch(`likes/${commentId}/comment`,{
+    const response = await fetch(`/likes/${commentId}/comment`,{
         method: 'DELETE',
         headers: {'Content-Type':'application/json'},
     })

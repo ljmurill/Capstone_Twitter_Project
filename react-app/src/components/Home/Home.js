@@ -89,7 +89,7 @@ function HomeFeed(){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-      
+
         }
     }
 
@@ -176,12 +176,12 @@ function HomeFeed(){
                                                 {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                                             </div>
                                             <div className="CommentIconAndNumberSpace">
-                                                <CreateCommentSetUp post={post}/>
-                                                <div>
+                                                <div className="postIcons">
+                                                    <CreateCommentSetUp post={post}/>
                                                     {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
                                                 </div>
+                                                <Likes post={post}/>
                                             </div>
-                                                {/* <Likes post={post}/> */}
                                         </div>
                                     </div>
                                 </>

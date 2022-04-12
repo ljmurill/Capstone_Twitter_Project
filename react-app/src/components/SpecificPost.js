@@ -6,6 +6,7 @@ import { getComments, createComment, getFeedPosts, profilePostsComments, totalPo
 import NavBar from "./NavBar";
 import Ellipsis from "./Home/Ellipsis";
 import CreateCommentSetUp from "./EditDeleteModal/createCommentSetUp";
+import Likes from "./Likes";
 
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -78,7 +79,7 @@ function SpecificPost(){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-         
+
         }
     }
 
@@ -107,8 +108,9 @@ function SpecificPost(){
                             <p className="pElementHome">{post.tweet}</p>
                             {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                         </div>
-                        <div>
+                        <div className="CommentIconAndNumberSpace">
                             <CreateCommentSetUp post={post}/>
+                            <Likes post={post}/>
                         </div>
                     </div>
                 </div>
@@ -186,6 +188,9 @@ function SpecificPost(){
                                         <div>
                                             <p className="pElementHome">{comment.comment}</p>
                                             {comment.image ? <img className='tweetImageOnHome' src={comment.image} onError={handleError}/>: ''}
+                                        </div>
+                                        <div className="CommentIconAndNumberSpace">
+                                            <Likes post={comment}/>
                                         </div>
                                     </div>
                                 </div>
