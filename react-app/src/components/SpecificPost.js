@@ -6,6 +6,8 @@ import { getComments, createComment, getFeedPosts, profilePostsComments, totalPo
 import NavBar from "./NavBar";
 import Ellipsis from "./Home/Ellipsis";
 import CreateCommentSetUp from "./EditDeleteModal/createCommentSetUp";
+import Likes from "./Likes";
+import moment from "moment";
 
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -78,7 +80,7 @@ function SpecificPost(){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-         
+
         }
     }
 
@@ -97,7 +99,7 @@ function SpecificPost(){
                         <div className="tweetUsernameEditDeleteDiv">
                             <div className="usernameAtUsernameDiv">
                                 <p className="pElementHomePostUsername">{post.username}</p>
-                                <span className="pElementAtUserName">@{post.username}</span>
+                                <span className="pElementAtUserName">@{post.username} - {moment(post.created_at).fromNow()}</span>
                             </div>
 
                             {post.user_id === currentUser.id && <Ellipsis post={post}/>}
@@ -107,8 +109,9 @@ function SpecificPost(){
                             <p className="pElementHome">{post.tweet}</p>
                             {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                         </div>
-                        <div>
+                        <div className="CommentIconAndNumberSpace">
                             <CreateCommentSetUp post={post}/>
+                            <Likes post={post}/>
                         </div>
                     </div>
                 </div>
@@ -177,7 +180,7 @@ function SpecificPost(){
                                         <div className="tweetUsernameEditDeleteDiv">
                                             <div className="usernameAtUsernameDiv">
                                                 <p className="pElementHomePostUsername">{comment.username}</p>
-                                                <span className="pElementAtUserName">@{comment.username}</span>
+                                                <span className="pElementAtUserName">@{comment.username} - {moment(comment.created_at).fromNow()}</span>
                                             </div>
 
                                             {comment.user_id === currentUser.id && <Ellipsis post={comment}/>}
@@ -186,6 +189,9 @@ function SpecificPost(){
                                         <div>
                                             <p className="pElementHome">{comment.comment}</p>
                                             {comment.image ? <img className='tweetImageOnHome' src={comment.image} onError={handleError}/>: ''}
+                                        </div>
+                                        <div className="CommentIconAndNumberSpace">
+                                            <Likes post={comment}/>
                                         </div>
                                     </div>
                                 </div>

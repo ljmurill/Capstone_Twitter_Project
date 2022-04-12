@@ -10,6 +10,7 @@ import { currentUserFollow } from "../../store/follows";
 import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
 import Likes from "../Likes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from 'moment';
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -89,7 +90,7 @@ function HomeFeed(){
             reader.addEventListener('load', () => {
                 setImagePreview(reader.result)
             })
-      
+
         }
     }
 
@@ -165,7 +166,8 @@ function HomeFeed(){
                                             <div className="tweetUsernameEditDeleteDiv">
                                                 <div className="usernameAtUsernameDiv">
                                                     <p className="pElementHomePostUsername">{post.username}</p>
-                                                    <span className="pElementAtUserName">@{post.username}</span>
+                                                    <span className="pElementAtUserName">@{post.username} - {moment(post.created_at).fromNow()}</span>
+
                                                 </div>
 
                                                 {post.user_id === currentUser.id && <Ellipsis post={post}/>}
@@ -176,12 +178,12 @@ function HomeFeed(){
                                                 {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                                             </div>
                                             <div className="CommentIconAndNumberSpace">
-                                                <CreateCommentSetUp post={post}/>
-                                                <div>
+                                                <div className="postIcons">
+                                                    <CreateCommentSetUp post={post}/>
                                                     {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
                                                 </div>
+                                                <Likes post={post}/>
                                             </div>
-                                                {/* <Likes post={post}/> */}
                                         </div>
                                     </div>
                                 </>

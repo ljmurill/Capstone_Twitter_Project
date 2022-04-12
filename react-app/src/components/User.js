@@ -9,6 +9,8 @@ import CreateCommentSetUp from './EditDeleteModal/createCommentSetUp';
 import NavBar from './NavBar';
 import './splashHomeNav.css';
 import EditProfileSetUp from './EditProfile/EditProfileSetUp';
+import Likes from './Likes';
+import moment from 'moment';
 import { currentUserFollow, followUser, getAllFollowers, getAllFollowing, unfollowUser } from '../store/follows';
 const defaultBackground = 'https://camo.mybb.com/f47a68f9fd1d3f39f1aa9790fe74520f256d2142/687474703a2f2f692e696d6775722e636f6d2f64485850582e706e67'
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -137,7 +139,7 @@ function User() {
                           <div className="tweetUsernameEditDeleteDiv">
                             <div className="usernameAtUsernameDiv">
                                 <p className="pElementHomePostUsername">{post.username}</p>
-                                <span className="pElementAtUserName">@{post.username}</span>
+                                <span className="pElementAtUserName">@{post.username} - {moment(post.created_at).fromNow()}</span>
                             </div>
 
                               {post.user_id === currentUser.id && <Ellipsis post={post}/>}
@@ -148,10 +150,11 @@ function User() {
                               {post.image ? <img className='tweetImageOnHome' src={post.image} onError={handleError}/>: ''}
                           </div>
                           <div className="CommentIconAndNumberSpace">
-                              <CreateCommentSetUp post={post}/>
-                              <div>
+                              <div className="postIcons">
+                                  <CreateCommentSetUp post={post}/>
                                   {allComments && allComments.filter(comment => comment.post_id === post.id).length > 0 ? allComments.filter(comment => comment.post_id === post.id).length : ''}
                               </div>
+                              <Likes post={post}/>
                           </div>
                       </div>
                   </div>
