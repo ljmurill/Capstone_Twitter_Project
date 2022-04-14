@@ -21,10 +21,17 @@ You should now be ready to get started!
 
 ### Posting a "Jot"
 You are able to post a jot from your sidebar and from the home page where you will see it appear on your home feed and profile page.
-![homeFeed](https://user-images.githubusercontent.com/72574258/159960770-5283db6e-dc41-45e0-8140-4a347012c3e3.png)
+![image](https://user-images.githubusercontent.com/72574258/163440948-bc1090d2-fe58-441f-bdba-0eac0090cff2.png)
 ### Following Users
 You will be able to go onto users profile page where you will be able to see all there post and follow them so there post can be present on your home feed.
-![profilePage](https://user-images.githubusercontent.com/72574258/159960732-0f2867af-a70b-4273-82b1-1963aeec26b0.png)
+![image](https://user-images.githubusercontent.com/72574258/163441151-9cebd085-ce8a-4159-9403-cfae4ec87564.png)
 ### Replying to Jots
 You have the ability to comment from the specific post page or comment by clicking the comment icon which will activiate a modal with the post and form to comment.
-![CommentFeature](https://user-images.githubusercontent.com/72574258/159960793-3d711ed8-702c-4021-987d-6c9560abf433.png)
+![image](https://user-images.githubusercontent.com/72574258/163441229-0b0cc01a-3411-45a6-8388-16912788a995.png)
+### Search for Users
+You have the ability to search for a user by their username and when you click the results it will take you to their profile page.
+![image](https://user-images.githubusercontent.com/72574258/163441668-3aad51d4-9f5c-44c5-adb9-720c56d534e3.png)
+### Look at users following
+The ability to look at who the users following and followers, from this page you can see if the users are following you and you can follow and unfollow from this page aswell.
+![image](https://user-images.githubusercontent.com/72574258/163441815-20240343-5533-42f3-a981-9b826034da91.png)
+
