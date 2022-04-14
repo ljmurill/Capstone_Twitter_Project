@@ -15,6 +15,7 @@ import { getFeedPosts, totalPosts } from './store/post';
 import {getAllComments} from './store/comment';
 import Followers from './components/FollowerFollowing/Followers';
 import Following from './components/FollowerFollowing/Following';
+import NotFound from './components/NotFound';
 
 
 
@@ -63,6 +64,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/homefeed' exact={true} >
           <HomeFeed/>
+        </ProtectedRoute>
+        <ProtectedRoute>
+          <NotFound/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

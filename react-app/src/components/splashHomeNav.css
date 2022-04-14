@@ -508,3 +508,22 @@
     text-decoration: none;
     width: 100%;
 }
+
+/* *************** 404 Page ****************** */
+
+.ErrorPage{
+    display: flex;
+    justify-content: center;
+}
+
+.middlePage{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 800px;
+}
+
+.image404{
+    border-radius: 10px;
+}
