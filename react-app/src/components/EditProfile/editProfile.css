@@ -119,3 +119,20 @@
     background-color: rgba(53, 52, 52, 0.8)
 
 }
+
+.followingButton{
+    width: 100px;
+    height: 35px;
+    border-radius: 9999px;
+    border: 1px white solid;
+    color: white;
+    background-color: black;
+    position: relative;
+}
+
+.followingButton:hover{
+    color: red;
+    border: 1px red solid;
+    background-color: rgb(103,7, 15);
+}
+

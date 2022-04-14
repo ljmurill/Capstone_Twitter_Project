@@ -83,6 +83,14 @@ function User() {
     e.target.src = 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'
   }
 
+  const handleMouseEnter = () => {
+    document.querySelector(`.followingOnUserPageButton`).innerHTML = 'Unfollow'
+  }
+
+  const handleMouseExit = () => {
+      document.querySelector(`.followingOnUserPageButton`).innerHTML = 'Following'
+  }
+
   return (
       <div className="homeFeedLayout">
         <NavBar />
@@ -102,7 +110,8 @@ function User() {
               <img className='backgroundImageProfile' src={user.background_image ? user.background_image : defaultBackground} onError={handleError}/>
               <div className='FollowButtonOnProfilePage'>
                 {currentUser.id === +userId && <EditProfileSetUp user={user} setUser={setUser}/>}
-                {follow.current[userId] && (+userId !== currentUser.id) && <button className='StyleFollowButtonOnProfilePage' onClick={handleUnFollow}>Unfollow</button>}
+                {follow.current[userId] && (+userId !== currentUser.id) && <button className='followingOnUserPageButton'
+                        onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit} onClick={handleUnFollow}>Following</button>}
                 {!follow.current[userId]  && (+userId !== currentUser.id) && <button className='StyleFollowButtonOnProfilePage' onClick={handleFollow}>Follow</button>}
               </div>
               {currentUser.id === +userId ?

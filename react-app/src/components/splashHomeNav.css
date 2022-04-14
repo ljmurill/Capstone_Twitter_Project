@@ -264,6 +264,23 @@
     width: 80px;
     height: 35px;
 }
+
+.followingOnUserPageButton{
+    width: 100px;
+    height: 35px;
+    border-radius: 9999px;
+    border: 1px white solid;
+    color: white;
+    background-color: black;
+    left: -19px;
+    position: relative;
+}
+
+.followingOnUserPageButton:hover{
+    color: red;
+    border: 1px red solid;
+    background-color: rgb(103,7, 15);
+}
 /* ****************** PostPage ****************** */
 
 .imageAndFormPostPage{

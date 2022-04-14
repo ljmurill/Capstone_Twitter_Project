@@ -32,9 +32,11 @@ function Following(){
         (async () => {
             const response = await fetch(`/follows/${userId}/following`)
             const followers = await response.json()
-            let data = followers.following.filter(item => item.id !== currentUser.id);
-            data.unshift(currentUser)
-            setFollowing(data);
+            if(+userId !== currentUser.id){
+                let data = followers.following.filter(item => item.id !== currentUser.id);
+                data.unshift(currentUser)
+                setFollowing(data);
+            }else setFollowing(followers.following)
         })();
         (async () => {
             const response = await fetch(`/follows/${currentUser.id}/followers`)
