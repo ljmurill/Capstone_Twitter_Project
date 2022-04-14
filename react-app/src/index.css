@@ -4,6 +4,7 @@ body{
     background-color: black;
     color: white;
     height: 100%;
+    font-family: sans-serif;
 }
 
 .linkTextDecoration{
@@ -13,3 +14,4 @@ body{
 .active{
     font-weight: bolder;
 }
+

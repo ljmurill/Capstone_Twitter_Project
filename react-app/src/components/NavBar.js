@@ -11,6 +11,9 @@ const NavBar = () => {
   return (
     <nav className='navBarMainDiv'>
           <div className='topNavSection'>
+            {/* <NavLink to='/homefeed' exact={true} className='linkTextDecoration'>
+              <div className='HomeIconHoverAffect'><FontAwesomeIcon icon="fa-solid fa-file-pen" color='white' className='navBarIcon'/></div>
+            </NavLink> */}
             <NavLink to='/homefeed' exact={true} activeClassName='active' className='linkTextDecoration'>
               <div className='white'><FontAwesomeIcon icon="fa-solid fa-house" />Home</div>
             </NavLink>

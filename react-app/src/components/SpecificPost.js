@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getComments, createComment, getFeedPosts, profilePostsComments, totalPosts } from "../store/post";
 import NavBar from "./NavBar";
@@ -21,7 +21,7 @@ function SpecificPost(){
     const [errors, setErrors] = useState([]);
     const {postId} = useParams();
 
-
+    const history = useHistory()
     const dispatch = useDispatch();
 
     const currentUser = useSelector(state => state.session.user)
@@ -89,11 +89,20 @@ function SpecificPost(){
         <div className="homeFeedLayout">
             <NavBar />
             <div className="border">
-            <div className="HomeTitleHomePage"><h2>Jot</h2></div>
+                <div className='arrowAndHeader'>
+                    <div className='arrowHoverAffect'>
+                        <FontAwesomeIcon icon="fa-solid fa-arrow-left" onClick={() => history.goBack()}/>
+                    </div>
+                <div className="HomeTitleHomePage">
+                        <h2 className='userNameProfilePage'>Jot</h2>
+                </div>
+                </div>
                 <div className="homeFeedHiddenScroll">
                 <div className='borderTopPostSpecificPost' >
                     <div>
-                        <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                        <Link to={`/users/${post.user_id}`}>
+                            <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                        </Link>
                     </div>
                     <div className="rightSideOfTweetHome">
                         <div className="tweetUsernameEditDeleteDiv">
@@ -117,7 +126,9 @@ function SpecificPost(){
                 </div>
                 <div className="formProfilePicPostPage">
                     <div className="imageAndFormPostPage">
-                        <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+                        <Link to={`/users/${currentUser.id}`}>
+                            <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+                        </Link>
                         <div className="postPageFormInputFileButton">
                             <form onSubmit={handleSubmit}>
                                 <div className='postErrors'>
@@ -174,7 +185,9 @@ function SpecificPost(){
                             <>
                                 <div className='borderTopPost' >
                                     <div>
-                                        <img className='profilePicTopHome' src={comment.profile_pic ? comment.profile_pic: defaultProfilePic} onError={handleError}/>
+                                        <Link to={`/users/${comment.user_id}`}>
+                                            <img className='profilePicTopHome' src={comment.profile_pic ? comment.profile_pic: defaultProfilePic} onError={handleError}/>
+                                        </Link>
                                     </div>
                                     <div className="rightSideOfTweetHome">
                                         <div className="tweetUsernameEditDeleteDiv">

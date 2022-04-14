@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { profilePostsComments } from '../store/post';
 import { getAllComments } from '../store/comment';
@@ -11,6 +11,7 @@ import './splashHomeNav.css';
 import EditProfileSetUp from './EditProfile/EditProfileSetUp';
 import Likes from './Likes';
 import moment from 'moment';
+import SearchBar from './SearchBar';
 import { currentUserFollow, followUser, getAllFollowers, getAllFollowing, unfollowUser } from '../store/follows';
 const defaultBackground = 'https://camo.mybb.com/f47a68f9fd1d3f39f1aa9790fe74520f256d2142/687474703a2f2f692e696d6775722e636f6d2f64485850582e706e67'
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -86,10 +87,14 @@ function User() {
       <div className="homeFeedLayout">
         <NavBar />
         <div className="border">
-
-          <h1 className='userNameProfilePage'>{user.username}</h1>
+          <div className='arrowAndHeader'>
+          <div className='arrowHoverAffect'><FontAwesomeIcon icon="fa-solid fa-arrow-left" onClick={() => history.goBack()}/></div>
+          <div>
+            <h2 className='userNameProfilePage'>{user.username}</h2>
+            <div className='numberOfJotsProfilePage'>{total.length > 0 ? total.length: 0} Jot(s)</div>
+          </div>
+          </div>
           {/* <div>{Object.values(total).length > 0 ? Object.values(total).length: ''} Jots</div> */}
-          <div className='numberOfJotsProfilePage'>{total.length > 0 ? total.length: 0} Jot(s)</div>
 
 
           <div className="homeFeedHiddenScroll">
@@ -133,7 +138,9 @@ function User() {
 
                   <div className='borderTopPost' >
                       <div>
+                        <Link to={`/users/${post.user_id}`}>
                           <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                        </Link>
                       </div>
                       <div className="rightSideOfTweetHome">
                           <div className="tweetUsernameEditDeleteDiv">
@@ -163,6 +170,7 @@ function User() {
             ))}
           </div>
         </div>
+        <SearchBar/>
       </div>
   );
 }

@@ -76,7 +76,7 @@
 }
 
 .border{
-    border-top: 1px solid gray;
+    /* border-top: 1px solid gray; */
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     width: 650px;
@@ -104,11 +104,29 @@
 }
 
 /* ****************** NavBar ****************** */
+.navBarIcon{
+    font-size: x-large;
+
+}
+.HomeIconHoverAffect{
+    margin-left: 5px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.HomeIconHoverAffect:hover{
+    background-color: rgb(51, 50, 50);
+}
+
 .topNavSection{
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 15px;
+    /* padding: 15px; */
 }
 .jotNavBarButton{
     background-color: rgb(29, 155, 240);
@@ -162,6 +180,27 @@
 }
 
 /* ****************** User ****************** */
+
+.arrowAndHeader{
+    display: flex;
+    /* align-items: center; */
+
+}
+
+.arrowHoverAffect{
+    margin-left: 15px;
+    border-radius: 50%;
+    width:35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrowHoverAffect:hover{
+    background-color: rgb(54, 53, 53);
+}
+
+
 .profilePicMain{
     border-radius: 50%;
     width: 130px;
@@ -184,6 +223,7 @@
 .userNameProfilePage{
     margin: 0;
     margin-left: 15px;
+    margin-top: 5px;
 }
 
 .backgroundImageProfile{
@@ -314,7 +354,7 @@
     justify-content: flex-start;
     align-items: center;
     border-radius: 9999px;
-    width: 250px;
+    width: 195px;
     padding: 10px;
     margin-bottom: 15px;
     gap: 10px;
@@ -331,6 +371,7 @@
 
 .userListPageLayout{
     display: flex;
+    justify-content: center;
 
 }
 
@@ -347,12 +388,101 @@
 .flexWrapOfUsers{
     display: flex;
     flex-wrap:wrap;
-    width: 800px;
-    border: 1px solid white
+    /* border: 1px solid white */
 }
 
 .userListTitleAndUserList{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+
+/* *************** SearchBar ****************** */
+
+.searchBar{
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.searchBarInput{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+.searchBarDiv{
+    border-radius: 9999px;
+    width: 225px;
+    height: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(32, 35, 39);
+    gap: 10px;
+
+}
+
+/* .colorChange{
+    background-color: black;
+    border: 1px solid rgb(29, 155, 240);
+} */
+
+.searchResults{
+    background-color: black;
+    box-shadow: -1px 1px 15px -4px white;
+    border-radius: 15px;
+    width: 230px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.searchBarText{
+    color: gray;
+    text-align: center;
+
+}
+
+.usersOnSearchBar{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+
+}
+.usersOnSearchBar:hover{
+    background-color: rgb(59, 59, 59);
+}
+
+.searchbarImage{
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.usernameSearchBar{
+    font-weight: bold;
+    margin: 0;
+
+}
+.atUsernameSearchBar{
+    color: gray;
+    font-size: x-small;
+    margin: 0;
+}
+
+.usernamesTogether{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.linkSearchBar{
+    color: white;
+    text-decoration: none;
 }

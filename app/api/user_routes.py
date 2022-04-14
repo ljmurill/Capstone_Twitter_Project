@@ -26,6 +26,13 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
+@user_routes.route('/<search>')
+def users_search(search):
+    users = User.query.filter(User.username.ilike(f'%{search}%')).all()
+
+    return {'users': [user.to_dict() for user in users]}
+
+
 
 @user_routes.route('/<int:id>')
 @login_required
@@ -55,7 +62,7 @@ def account_images(id):
         user = User.query.get(id)
 
         if "profile_pic" not in request.files and "background_image" not in request.files:
-    
+
             if user.background_image == request.form['background_image']:
                 user.background_image = user.background_image
             else:
