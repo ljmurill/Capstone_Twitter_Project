@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     height: 50px;
+    text-decoration: none;
 }
 
 .splitFollowSection:hover{
@@ -21,6 +22,7 @@
     border-bottom: 3px solid rgb(29, 155, 240);
     margin: 0;
     padding: 1em 0;
+    color: white;
 }
 
 .notCurrentFollow{
@@ -43,4 +45,30 @@
     align-items: center;
     padding: 15px;
     gap: 10px;
+}
+
+.atAndFollowsYou{
+    display: flex;
+    gap: 10px;
+}
+
+.parentFollowerDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    grid-gap: 10px;
+    gap: 10px;
+}
+
+.parentFollowerDiv:hover{
+    background-color: rgb(65, 64, 64);
+}
+
+.labelFollowsYou{
+    font-size: x-small;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(32, 35, 39);
+    color: gray;
 }

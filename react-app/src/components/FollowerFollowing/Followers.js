@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import './following.css'
 import { useDispatch, useSelector } from "react-redux";
+import ButtonFollow from "./buttons";
 import { currentUserFollow2, followUser, unfollowUser, currentUserFollow } from "../../store/follows";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -48,13 +49,13 @@ function Followers(){
         return null;
     }
 
-    const handleFollow = async() => {
-        await dispatch(followUser(userId));
-    }
+    // const handleFollow = async(id) => {
+    //     await dispatch(followUser(id));
+    // }
 
-    const handleUnFollow = async() => {
-        await dispatch(unfollowUser(userId));
-    }
+    // const handleUnFollow = async(id) => {
+    //     await dispatch(unfollowUser(id));
+    // }
 
 
     return(
@@ -69,29 +70,30 @@ function Followers(){
             </div>
             </div>
             <div className="followingSection">
-                <div className="splitFollowSection"><p className="currentFollow">Followers</p></div>
-                <div className="splitFollowSection"><p className="notCurrentFollow">Following</p></div>
+                <Link className="splitFollowSection" to={`/users/${user.id}/followers`}><p className="currentFollow">Followers</p></Link>
+                <Link className="splitFollowSection" to={`/users/${user.id}/following`}><p className="notCurrentFollow">Following</p></Link>
             </div>
             <div className="homeFeedHiddenScroll">
                 {followers && followers.map((user, i) => (
-                    <Link className='linkSearchBar' key={i} to={`/users/${user.id}`}>
-                        <div className="followerDiv">
-                            <img className='followersImage' src={user.profile_pic ? user.profile_pic : defaultProfilePic} alt=''/>
-                                <div className="usernamesTogether">
-                                <p className="usernameSearchBar">{user.username}</p>
-                                <div>
-                                    <p className="atUsernameFollows">@{user.username}</p>
-                                    {currentUserFollowers.map((cuserFollower, i) => {
-                                        if(user.id === cuserFollower.id) return <label key={i}>Follows you</label>
-                                    })}
-                                </div>
-                                {follow.current[user.id] && <button className='StyleFollowButtonOnProfilePage' onClick={handleUnFollow}>Unfollow</button>}
-                                {!follow.current[user.id] && <button className='StyleFollowButtonOnProfilePage' onClick={handleFollow}>Follow</button>}
+                    <div key={i} className="parentFollowerDiv">
+                        <Link className='linkSearchBar' to={`/users/${user.id}`}>
+                            <div className="followerDiv">
+                                <img className='followersImage' src={user.profile_pic ? user.profile_pic : defaultProfilePic} alt=''/>
+                                    <div className="usernamesTogether">
+                                    <p className="usernameSearchBar">{user.username}</p>
+                                    <div className="atAndFollowsYou">
+                                        <p className="atUsernameFollows">@{user.username}</p>
+                                        {currentUserFollowers.map((cuserFollower, i) => {
+                                            if(user.id === cuserFollower.id) return <label className="labelFollowsYou" key={i}>Follows you</label>
+                                        })}
+                                    </div>
 
-                                </div>
+                                    </div>
+                            </div>
+                        </Link>
+                                <ButtonFollow user={user} follow={follow}/>
                         </div>
 
-                    </Link>
                 ))}
             </div>
             </div>

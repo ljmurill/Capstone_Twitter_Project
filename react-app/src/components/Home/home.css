@@ -192,3 +192,8 @@
     display: flex;
     gap: 6px;
 }
+
+.addedMargin{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

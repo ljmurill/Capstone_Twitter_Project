@@ -104,7 +104,7 @@ function HomeFeed(){
 
             <div className="border">
                 {/* <div className="topOfHomePage"> */}
-                    <div className="HomeTitleHomePage">
+                    <div className="HomeTitleHomePage addedMargin">
                         <h2 className='userNameProfilePage'>Home</h2>
                     </div>
                     <div className="homeFeedHiddenScroll">

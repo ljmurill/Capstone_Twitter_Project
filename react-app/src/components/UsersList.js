@@ -45,7 +45,7 @@ function UsersList() {
       <div className='border'>
 
       <div className='userListTitleAndUserList'>
-        <div className='arrowAndHeader'>
+        <div className='arrowAndHeader addedMargin'>
           <div className='arrowHoverAffect'><FontAwesomeIcon icon="fa-solid fa-arrow-left" onClick={() => history.goBack()}/></div>
           <div className="HomeTitleHomePage"><h2 className='userNameProfilePage'>User List</h2></div>
         </div>
