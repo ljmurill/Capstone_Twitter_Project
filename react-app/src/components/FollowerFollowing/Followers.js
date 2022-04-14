@@ -35,8 +35,9 @@ function Followers(){
         (async () => {
             const response = await fetch(`/follows/${userId}/followers`)
             const followers = await response.json()
-            console.log(followers.followers)
-            setFollowers(followers.followers);
+            let data = followers.followers.filter(item => item.id !== currentUser.id);
+            data.unshift(currentUser)
+            setFollowers(data);
         })();
         (async () => {
             const response = await fetch(`/follows/${currentUser.id}/followers`)
@@ -49,13 +50,6 @@ function Followers(){
         return null;
     }
 
-    // const handleFollow = async(id) => {
-    //     await dispatch(followUser(id));
-    // }
-
-    // const handleUnFollow = async(id) => {
-    //     await dispatch(unfollowUser(id));
-    // }
 
 
     return(
@@ -86,6 +80,7 @@ function Followers(){
                                         {currentUserFollowers.map((cuserFollower, i) => {
                                             if(user.id === cuserFollower.id) return <label className="labelFollowsYou" key={i}>Follows you</label>
                                         })}
+                                        {/* {user.id === currentUser.id && <label className="labelFollowsYou">You</label>} */}
                                     </div>
 
                                     </div>

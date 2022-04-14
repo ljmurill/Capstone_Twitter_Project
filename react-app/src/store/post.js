@@ -80,7 +80,7 @@ export const createJot = (formData) => async(dispatch) => {
     } else if(response.status < 500){
         const data = await response.json();
         if (data.errors) {
-            console.log(data.errors)
+
           return data.errors;
         }
     } else{
@@ -100,7 +100,7 @@ export const updatePost = (postId, formData) => async(dispatch) => {
     } else if(response.status < 500){
         const data = await response.json();
         if (data.errors) {
-            console.log(data.errors)
+
           return data.errors;
         }
     } else{
@@ -172,7 +172,7 @@ export const createComment = (formData) =>  async(dispatch) => {
     } else if(response.status < 500){
         const data = await response.json();
         if (data.errors) {
-            console.log(data.errors)
+
           return data.errors;
         }
     } else{
@@ -205,7 +205,7 @@ export const updateComment = (commentId, formData) => async(dispatch) => {
     } else if(response.status < 500){
         const data = await response.json();
         if (data.errors) {
-            console.log(data.errors)
+        
           return data.errors;
         }
     } else{
