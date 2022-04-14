@@ -120,10 +120,14 @@ function User() {
                 </div>
                 <div className='followersFollowingTrack'>
                   <div>
-                    <span className='BoldNumber'>{following}</span> <span className='pElementAtUserName'>Following</span>
+                    <Link to={`/users/${userId}/following`} className='linkSearchBar hover'>
+                        <span className='BoldNumber'>{following}</span> <span className='pElementAtUserName'>Following</span>
+                    </Link>
                   </div>
                   <div>
+                    <Link to={`/users/${userId}/followers`} className='linkSearchBar hover'>
                     <span className='BoldNumber'>{followers}</span> <span className='pElementAtUserName'>Followers</span>
+                    </Link>
                   </div>
                 </div>
 

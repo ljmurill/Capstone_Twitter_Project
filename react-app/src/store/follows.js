@@ -3,12 +3,16 @@ const UNFOLLOW = 'follows/UNFOLLOW';
 // const GET_FOLLOWING = 'follows/GET_FOLLOWING';
 // const GET_FOLLOWERS = 'follows/GET_FOLLOWERS';
 const CURRENT_USER_FOLLOWING = 'follows/CURRENT_USER_FOLLOWING';
-
+// const CURRENT_USER_FOLLOWERS = 'follows/CURRENT_USER_FOLLOWERS';
 const currentUserFollowing = (current) => ({
     type:CURRENT_USER_FOLLOWING,
     current,
 })
 
+// const currentUserFollowers = (current) => ({
+//     type: CURRENT_USER_FOLLOWERS,
+//     current,
+// })
 // const followers = (allFollowers) => ({
 //     type:GET_FOLLOWERS,
 //     followers:allFollowers,
@@ -37,6 +41,13 @@ export const currentUserFollow = (userId) => async(dispatch) => {
     }
 }
 
+// export const currentUserFollow2 = (userId) => async(dispatch) => {
+//     const response = await fetch(`/follows/${userId}/followers`)
+//     if (response.ok){
+//         const data = await response.json();
+//         dispatch(currentUserFollowers(data))
+//     }
+// }
 // export const getAllFollowers =(userId) => async(dispatch) => {
 //     const response = await fetch(`/follows/${userId}/followers`);
 //     if(response.ok){
@@ -89,6 +100,10 @@ export default function followReducer(state=initialState, action){
         // case GET_FOLLOWERS:
         //     newState={...state};
         //     action.followers.followers.forEach(user => newState.followers[user.id] = user);
+        //     return newState;
+        // case CURRENT_USER_FOLLOWERS:
+        //     newState={current:{}};
+        //     action.current.followers.forEach(user => newState.current[user.id] = user);
         //     return newState;
         case CURRENT_USER_FOLLOWING:
             newState={current:{}};

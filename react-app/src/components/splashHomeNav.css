@@ -181,6 +181,10 @@
 
 /* ****************** User ****************** */
 
+.hover:hover{
+    text-decoration: underline;
+}
+
 .arrowAndHeader{
     display: flex;
     /* align-items: center; */
