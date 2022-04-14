@@ -16,6 +16,8 @@ import {getAllComments} from './store/comment';
 import Followers from './components/FollowerFollowing/Followers';
 import Following from './components/FollowerFollowing/Following';
 
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

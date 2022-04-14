@@ -132,11 +132,14 @@ def edit_post(id):
     if form.validate_on_submit():
         post = Post.query.get(id)
         if "image" not in request.files:
+            if post.image == request.form['image']:
+                post.image = post.image
+            else:
+                post.image = None
 
-            image = None
             tweet = request.form['tweet']
             post.tweet = tweet
-            post.image = image
+       
 
         else:
             image = request.files['image']
