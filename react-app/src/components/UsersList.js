@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import NavBar from './NavBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 function UsersList() {
   const [users, setUsers] = useState([]);
+
+  const history = useHistory();
 
   const currentUser = useSelector(state => state.session.user);
 
@@ -39,11 +42,17 @@ function UsersList() {
 
     <div className='userListPageLayout'>
       <NavBar/>
+      <div className='border'>
+
       <div className='userListTitleAndUserList'>
-        <h1>User List </h1>
+        <div className='arrowAndHeader addedMargin'>
+          <div className='arrowHoverAffect'><FontAwesomeIcon icon="fa-solid fa-arrow-left" onClick={() => history.goBack()}/></div>
+          <div className="HomeTitleHomePage"><h2 className='userNameProfilePage'>User List</h2></div>
+        </div>
         <div className='hiddenScrollOnUserList'>
           <div className='flexWrapOfUsers'>{userComponents}</div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -59,7 +59,7 @@
     width: 570px;
     height: 450px;
     border-radius: 5%;
-
+    object-fit: cover;
 
 }
 
@@ -114,6 +114,7 @@
     width: 570px;
     height: 450px;
     border-radius: 5%;
+    object-fit: cover;
 }
 
 .ellipsisColor{
@@ -135,9 +136,9 @@
     position: relative;
 }
 
-.HomeTitleHomePage{
+/* .HomeTitleHomePage{
     margin-left:15px;
-}
+} */
 
 .formhomeWithInputsAndErrors{
     padding-bottom: 10px;
@@ -190,4 +191,9 @@
 .postIcons{
     display: flex;
     gap: 6px;
+}
+
+.addedMargin{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

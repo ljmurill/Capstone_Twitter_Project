@@ -12,6 +12,10 @@ import Splash from './components/Splash';
 import HomeFeed from './components/Home/Home';
 import SpecificPost from './components/SpecificPost';
 import { getFeedPosts, totalPosts } from './store/post';
+import {getAllComments} from './store/comment';
+import Followers from './components/FollowerFollowing/Followers';
+import Following from './components/FollowerFollowing/Following';
+
 
 
 function App() {
@@ -47,6 +51,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/followers' exact={true}>
+          <Followers/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/following' exact={true}>
+          <Following/>
         </ProtectedRoute>
         <ProtectedRoute path='/posts/:postId' exact={true} >
           <SpecificPost />

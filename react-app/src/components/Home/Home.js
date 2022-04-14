@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createJot, getFeedPosts } from "../../store/post";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import NavBar from "../NavBar";
 import Ellipsis from "./Ellipsis";
 import './home.css'
@@ -11,6 +11,7 @@ import CreateCommentSetUp from "../EditDeleteModal/createCommentSetUp";
 import Likes from "../Likes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from 'moment';
+import SearchBar from "../SearchBar";
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
 
@@ -95,19 +96,22 @@ function HomeFeed(){
     }
 
 
+
     return(
-        <div className="homeFeedLayout">
+        <div className="homeFeedLayout" >
 
             <NavBar/>
 
             <div className="border">
                 {/* <div className="topOfHomePage"> */}
-                    <div className="HomeTitleHomePage">
-                        <h2>Home</h2>
+                    <div className="HomeTitleHomePage addedMargin">
+                        <h2 className='userNameProfilePage'>Home</h2>
                     </div>
                     <div className="homeFeedHiddenScroll">
                         <div className="formProfilePicHomePage">
-                            <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+                            <Link to={`/users/${currentUser.id}`}>
+                                <img className='profilePicTopHome' src={currentUser.profile_pic ? currentUser.profile_pic: defaultProfilePic} onError={handleError}/>
+                            </Link>
                             <div className="formAndButtonDiv">
                                     <form className="formhomeWithInputsAndErrors">
                                         <div className='postErrors'>
@@ -160,7 +164,9 @@ function HomeFeed(){
                                 <>
                                     <div className='borderTopPost' >
                                         <div>
-                                            <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                                            <Link to={`/users/${post.user_id}`}>
+                                                <img className='profilePicTopHome' src={post.profile_pic ? post.profile_pic: defaultProfilePic} onError={handleError}/>
+                                            </Link>
                                         </div>
                                         <div className="rightSideOfTweetHome">
                                             <div className="tweetUsernameEditDeleteDiv">
@@ -193,6 +199,7 @@ function HomeFeed(){
                 {/* </div> */}
 
             </div>
+            <SearchBar/>
         </div>
     )
 }
