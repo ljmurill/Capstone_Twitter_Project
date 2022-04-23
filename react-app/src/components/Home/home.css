@@ -24,6 +24,10 @@
     height: 30px;
 }
 
+.jotButtonOnHomePage:hover{
+    cursor: pointer;
+}
+
 .buttonHomePageDiv{
     display: flex;
     justify-content: space-between;
@@ -37,6 +41,11 @@
 } */
 .colorOfImageIcon{
     color: rgb(42, 147, 218);
+}
+
+.colorOfImageIcon:hover{
+    cursor: pointer;
+
 }
 .xOnImagePreview{
     position: relative;
@@ -120,7 +129,9 @@
 .ellipsisColor{
     color: gray;
 }
-
+.ellipsisColor:hover{
+    cursor: pointer;
+}
 .editDeleteDropDown{
     display: flex;
     flex-direction: column;
@@ -192,7 +203,9 @@
     display: flex;
     gap: 6px;
 }
-
+.postIcons:hover{
+    cursor: pointer;
+}
 .addedMargin{
     margin-top: 15px;
     margin-bottom: 15px;

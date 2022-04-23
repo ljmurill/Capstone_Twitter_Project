@@ -83,6 +83,9 @@
     color: white;
 }
 
+..colorOfImageIconEditProfile:hover{
+    cursor: pointer;
+}
 
 .XProfilePicturePreview{
     position: relative;
@@ -135,4 +138,3 @@
     border: 1px red solid;
     background-color: rgb(103,7, 15);
 }
-

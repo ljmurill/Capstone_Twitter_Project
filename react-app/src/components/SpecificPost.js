@@ -8,6 +8,7 @@ import Ellipsis from "./Home/Ellipsis";
 import CreateCommentSetUp from "./EditDeleteModal/createCommentSetUp";
 import Likes from "./Likes";
 import moment from "moment";
+import SearchBar from "./SearchBar";
 
 
 const defaultProfilePic = 'https://www.alphr.com/wp-content/uploads/2020/10/twitter.png';
@@ -214,6 +215,7 @@ function SpecificPost(){
                         ))}
                     </div>
             </div>
+            <SearchBar/>
         </div>
     )
 }
