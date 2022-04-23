@@ -1,5 +1,5 @@
 ## Jotter Project
-Jotter a place to "Jot your thoughts down!", is a clone of Twitter, where you can post, comment, and follow to build your feed.
+[Jotter](https://jotting-app.herokuapp.com) a place to "Jot your thoughts down!", is a clone of Twitter, where you can post, comment, and follow to build your feed. 
 
 ## Technologies Used
 Jotter uses a React frontend, Flask backend, and PostgreSQL as the database. Other tehchnologies where used such as Redux JavaScript, CSS, Python, SQLAlchemy.
